@@ -20,10 +20,7 @@ export const getPostById = async (req: Request, res: Response) => {
     if (!id) return res.status(400).send({ message: "Missing details!" });
     const post: any = await Post.findOne({ where: { id: id } });
     if (!post) return res.status(500).send({ message: "Post not found" });
-    const postRoles = await post.getPostRole();
-    return res
-      .status(200)
-      .send({ message: "Post found", payload: { post, postRoles } });
+    return res.status(200).send({ message: "Post found", payload: { post } });
   } catch (err) {
     console.log(err);
     res.status(500).end();
@@ -32,7 +29,7 @@ export const getPostById = async (req: Request, res: Response) => {
 export const createPost = async (req: Request, res: Response) => {
   try {
     const { email, postname, password } = req.body;
-    if (!email || !password)
+    if (!email || !password || !postname)
       return res.status(400).send({ message: "Missing details!" });
     const post: any = await Post.findOne({ where: { email: email } });
     if (post) return res.status(400).send({ message: "Post already exists" });
@@ -43,8 +40,7 @@ export const createPost = async (req: Request, res: Response) => {
       postname: postname,
       password: hashedString,
     });
-    await createdPost.addPostRole("post");
-    return res.status(200).send({   message: "Post created" });
+    return res.status(200).send({ message: "Post created" });
   } catch (err) {
     console.log(err);
     res.status(500).end();
@@ -82,5 +78,3 @@ export const deletePost = async (req: Request, res: Response) => {
     res.status(500).end();
   }
 };
-
-

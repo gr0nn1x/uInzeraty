@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
         const formData = new FormData(postForm);
         
-        fetch("/api/v1/post", {
+        fetch("http://localhost:3000/api/v1/post", {
             method: "POST",
             body: formData
         })
@@ -14,17 +14,14 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             if (data.message === "Post created") {
                 message.textContent = "Post created successfully!";
-                message.style.color = "green";
                 postForm.reset();
             } else {
                 message.textContent = data.message;
-                message.style.color = "red";
             }
         })
         .catch(error => {
             console.error("Error:", error);
             message.textContent = "An error occurred, please try again later.";
-            message.style.color = "red";
         });
     });
 });
