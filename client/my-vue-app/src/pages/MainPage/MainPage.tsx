@@ -6,7 +6,7 @@ export default function MainPage() {
     <>
       <p>
         <Link to="/post">Ahojky</Link>
-        <Link to="/post">Create Post</Link>
+        <Link to="/createpost">Create Post</Link>
       </p>
     </>
   );
