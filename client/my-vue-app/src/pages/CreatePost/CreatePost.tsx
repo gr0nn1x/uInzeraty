@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function MainPage() {
+export default function CreatePost() {
   return (
     <>
       <p>
-        <Link to="/post">Ahojky</Link>
-        <Link to="/post">Create Post</Link>
+        <Link to="/">Back to MainPage</Link>
       </p>
     </>
   );
