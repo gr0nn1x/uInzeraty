@@ -28,9 +28,7 @@ const getPostById = async (req, res) => {
         const post = await Post.findOne({ where: { id: id } });
         if (!post)
             return res.status(500).send({ message: "Post not found" });
-        return res
-            .status(200)
-            .send({ message: "Post found", payload: { post } });
+        return res.status(200).send({ message: "Post found", payload: { post } });
     }
     catch (err) {
         console.log(err);
@@ -41,8 +39,8 @@ exports.getPostById = getPostById;
 const createPost = async (req, res) => {
     try {
         const { email, postname, password } = req.body;
-        // if (!email || !password || !postname)
-        //   return res.status(400).send({ message: "Missing details!"  });
+        if (!email || !password || !postname)
+            return res.status(400).send({ message: "Missing details!" });
         const post = await Post.findOne({ where: { email: email } });
         if (post)
             return res.status(400).send({ message: "Post already exists" });
@@ -53,7 +51,7 @@ const createPost = async (req, res) => {
             postname: postname,
             password: hashedString,
         });
-        return res.status(200).send({ message: "Post created" });
+        return res.status(201).send({ message: "Post created" });
     }
     catch (err) {
         console.log(err);

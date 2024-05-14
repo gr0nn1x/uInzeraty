@@ -40,7 +40,7 @@ export const createPost = async (req: Request, res: Response) => {
       postname: postname,
       password: hashedString,
     });
-    return res.status(200).send({ message: "Post created" });
+    return res.status(201).send({ message: "Post created" });
   } catch (err) {
     console.log(err);
     res.status(500).end();
