@@ -51,7 +51,7 @@ const createPost = async (req, res) => {
             postname: postname,
             password: hashedString,
         });
-        return res.status(200).send({ message: "Post created" });
+        return res.status(201).send({ message: "Post created" });
     }
     catch (err) {
         console.log(err);
