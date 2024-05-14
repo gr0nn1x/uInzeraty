@@ -137,4 +137,3 @@ export default function CreatePost() {
     </ThemeProvider>
   );
 }
-//i hate šuba i love him
