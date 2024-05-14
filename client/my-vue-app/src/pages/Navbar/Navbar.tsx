@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, Toolbar, Button, List, ListItem, ListItemText, ListItemButton, Box } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
 
@@ -15,7 +16,7 @@ const Navbar: React.FC = () => {
           </div>
           <List>
             <ListItemButton color="inherit" sx={{ bgcolor: '#757575' }}>
-              <ListItemText primary="Button 3" />
+           <Link to="/createpost">   <ListItemText primary="Create Post" /></Link>
             </ListItemButton>
             <ListItemButton color="inherit" sx={{ bgcolor: '#757575' }}>
               <ListItemText primary="Button 4" />
