@@ -88,6 +88,17 @@ export default function CreatePost() {
                   autoFocus
                 />
               </Grid>
+              <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextImField
+                  name="image"
+                  required
+                  fullWidth
+                  id="image"
+                  label="image"  
+                  autoFocus
+                />
+              </Grid>
 
               <Grid item xs={12}>
                 <TextField
