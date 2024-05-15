@@ -3,7 +3,7 @@ import { genSalt, hash } from "bcrypt";
 import db from "../models/index";
 const Posting = db.posts;
 const Post = require("../models/post");
-const imageController = require("./image.js");
+const imageController = require("../controllers/image");
 
 export const getAllPosts = async (req: Request, res: Response) => {
   try {
