@@ -4,7 +4,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
 
-const Navbar: React.FC = () => {
+  const Navbar: React.FC = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
