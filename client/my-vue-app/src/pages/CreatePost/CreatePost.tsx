@@ -94,12 +94,10 @@ export default function CreatePost() {
               </Grid>
             </Grid>
             <Grid>
-              <form>
                 <TextField type="file" name="photo" id="photo" />
                 <Button variant="contained" color="primary" component="span">
                   Upload
                 </Button>
-              </form>
             </Grid>
             <Button
               type="submit"

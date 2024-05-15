@@ -8,7 +8,7 @@ const bcrypt_1 = require("bcrypt");
 const index_1 = __importDefault(require("../models/index"));
 const Posting = index_1.default.posts;
 const Post = require("../models/post");
-const imageController = require("./image.js");
+const imageController = require("../controllers/image");
 const getAllPosts = async (req, res) => {
     try {
         const posts = await Posting.findAll();
