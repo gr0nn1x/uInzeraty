@@ -3,7 +3,7 @@ import { genSalt, hash } from "bcrypt";
 import db from "../models/index";
 const Posting = db.posts;
 const Post = require("../models/post");
-const imageController = require("../controllers/image");
+const imageController = require("./image.js");
 
 export const getAllPosts = async (req: Request, res: Response) => {
   try {
@@ -30,7 +30,7 @@ export const getPostById = async (req: Request, res: Response) => {
 };
 export const createPost = async (req: Request, res: Response) => {
   try {
-    const { email, postname, password, image } = req.body;
+    const { email, postname, password, photo } = req.body;
     if (!email || !password || !postname)
       return res.status(400).send({ message: "Missing details!" });
     const post: any = await Posting.findOne({ where: { email: email } });
@@ -38,7 +38,7 @@ export const createPost = async (req: Request, res: Response) => {
     const salt = await genSalt(10);
     const hashedString = await hash(password, salt);
     const createdPost = await Posting.create({
-      image: image,
+      photo: photo,
       email: email,
       postname: postname,
       password: hashedString,
@@ -82,7 +82,7 @@ export const deletePost = async (req: Request, res: Response) => {
   }
 };
 
-const uploadFile = imageController.upload.single("imgFile");
+const uploadFile = imageController.upload.single("photo");
 
 const saveFileIntoFolder = (
   req: Request,
@@ -103,7 +103,7 @@ const saveFileIntoFolder = (
 const saveIntoDb = async (req: Request, res: Response) => {
   try {
     const upload = new Post({
-      name: req.body.imgName,
+      name: req.body.photo,
       imagePath:
         `http://localhost:3000/api/v${process.env.API_VER}/img` +
         req.body.postname,

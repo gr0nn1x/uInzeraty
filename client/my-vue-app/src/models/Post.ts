@@ -23,6 +23,7 @@ export type Post = {
   email?: string;
   postname?: string;
   password?: string;
+  photo?: string;
   createdAt?: string;
   updatedAt?: string;
 };
