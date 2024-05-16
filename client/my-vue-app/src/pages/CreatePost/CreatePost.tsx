@@ -1,37 +1,18 @@
 import React, { useState } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link as ReactLink } from "react-router-dom";
 import { createPost } from "../../models/Post";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Box from "@mui/material/Box";
 
 export default function CreatePost() {
   const [info, setInfo] = useState();
@@ -44,12 +25,14 @@ export default function CreatePost() {
       postname: data.get("postname") as string,
       email: data.get("email") as string,
       password: data.get("password") as string,
+      photo: data.get("photo") as string,
     });
 
     if (post.status == 201) return navigate("/");
     if (post.status == 400) return setInfo(post.msg);
     if (post.status == 500) return navigate("/");
   };
+
   const defaultTheme = createTheme();
 
   return (
@@ -88,7 +71,6 @@ export default function CreatePost() {
                   autoFocus
                 />
               </Grid>
-
               <Grid item xs={12}>
                 <TextField
                   required
@@ -110,6 +92,12 @@ export default function CreatePost() {
                   autoComplete="new-password"
                 />
               </Grid>
+            </Grid>
+            <Grid>
+                <TextField type="file" name="photo" id="photo" />
+                <Button variant="contained" color="primary" component="span">
+                  Upload
+                </Button>
             </Grid>
             <Button
               type="submit"

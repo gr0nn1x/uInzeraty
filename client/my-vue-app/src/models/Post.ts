@@ -15,14 +15,15 @@ export const createPost = async (formData: Post) => {
 };
 
 //změnit název
-export const signIn = async (formData: Post) => {
+/* export const signIn = async (formData: Post) => {
   const res = await fetch("http://localhost:3000/api/v1/post");
 };
-
+ */
 export type Post = {
   email?: string;
   postname?: string;
   password?: string;
+  photo?: string;
   createdAt?: string;
   updatedAt?: string;
 };
