@@ -105,9 +105,9 @@ const saveIntoDb = async (req: Request, res: Response) => {
     const upload = new Post({
       name: req.body.photo,
       imagePath:
-        `http://localhost:3000/api/v${process.env.API_VER}/img` +
-        req.body.postname,
-    });
+        `http://localhost:3000/api/v${process.env.API_VER}/src/img/` +
+        req.file?.filename,
+    }); 
     const result = await upload.save();
     if (result) {
       return res.status(201).json({
