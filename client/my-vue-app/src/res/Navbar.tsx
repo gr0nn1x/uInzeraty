@@ -9,7 +9,7 @@ import PostAdd from '@mui/icons-material/PostAdd';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link } from 'react-router-dom';
 
-export const mainListItems = (
+export const mainNav = (
   <React.Fragment>
     <ListItemButton>
       <ListItemIcon>
@@ -36,7 +36,7 @@ export const mainListItems = (
   </React.Fragment>
 );
 
-export const secondaryListItems = (
+export const secondaryNav = (
   <React.Fragment>
     <ListSubheader component="div" inset>
       Kategorie

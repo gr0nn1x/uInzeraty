@@ -14,7 +14,7 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainNav, secondaryNav } from '../../res/Navbar';
 
 function Copyright(props: any) {
   return (
@@ -136,9 +136,9 @@ export default function MainPage() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+            {mainNav}
             <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            {secondaryNav}
           </List>
         </Drawer>
         <Box
@@ -154,11 +154,6 @@ export default function MainPage() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-            </Grid>
-            <Copyright sx={{ pt: 1 }} />
-          </Container>
         </Box>
       </Box>
     </ThemeProvider>
