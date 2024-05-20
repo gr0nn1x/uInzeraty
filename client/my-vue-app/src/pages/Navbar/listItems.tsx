@@ -11,12 +11,14 @@ import { Link } from 'react-router-dom';
 
 export const mainListItems = (
   <React.Fragment>
+    <Link to="/">
     <ListItemButton>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Inzeráty" />
     </ListItemButton>
+    </Link>
 
     <Link to="/createpost">
       <ListItemButton>

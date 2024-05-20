@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate, Link as ReactLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createPost } from "../../models/Post";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-
 import Box from "@mui/material/Box";
+import Navbar from '../Navbar/Navbar'; // Import the Navbar component
 
 export default function CreatePost() {
   const [info, setInfo] = useState();
@@ -28,16 +27,17 @@ export default function CreatePost() {
       photo: data.get("photo") as string,
     });
 
-    if (post.status == 201) return navigate("/");
-    if (post.status == 400) return setInfo(post.msg);
-    if (post.status == 500) return navigate("/");
+    if (post.status === 201) return navigate("/");
+    if (post.status === 400) return setInfo(post.msg);
+    if (post.status === 500) return navigate("/");
   };
 
   const defaultTheme = createTheme();
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Navbar title="Create Post" /> {/* Add Navbar component */}
+      <Container component="main" maxWidth="xs" sx={{ marginLeft: '240px', paddingLeft: '16px' }}> {/* Add paddingLeft */}
         <CssBaseline />
         <Box
           sx={{
@@ -57,7 +57,7 @@ export default function CreatePost() {
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+            sx={{ mt: 3, width: '100%' }} // Adjust width to 100%
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -93,11 +93,15 @@ export default function CreatePost() {
                 />
               </Grid>
             </Grid>
-            <Grid>
+            <Grid container justifyContent="center"> {/* Center the grid container */}
+              <Grid item> {/* Wrap the file input and upload button in a Grid item */}
                 <TextField type="file" name="photo" id="photo" />
+              </Grid>
+              <Grid item> {/* Wrap the file input and upload button in a Grid item */}
                 <Button variant="contained" color="primary" component="span">
                   Upload
                 </Button>
+              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -114,4 +118,3 @@ export default function CreatePost() {
     </ThemeProvider>
   );
 }
-//i hate šuba
