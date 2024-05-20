@@ -25,6 +25,7 @@ export default function CreatePost() {
       postname: data.get("postname") as string,
       email: data.get("email") as string,
       password: data.get("password") as string,
+      photo: data.get("photo") as string,
     });
 
     if (post.status == 201) return navigate("/");
@@ -70,7 +71,6 @@ export default function CreatePost() {
                   autoFocus
                 />
               </Grid>
-
               <Grid item xs={12}>
                 <TextField
                   required
@@ -92,6 +92,12 @@ export default function CreatePost() {
                   autoComplete="new-password"
                 />
               </Grid>
+            </Grid>
+            <Grid>
+                <TextField type="file" name="photo" id="photo" />
+                <Button variant="contained" color="primary" component="span">
+                  Upload
+                </Button>
             </Grid>
             <Button
               type="submit"
