@@ -23,12 +23,6 @@ function Copyright(props: any) {
       <Link color="inherit" href="https://github.com/gr0nn1x">
         Gr0nn1x
       </Link>{' '}
-      <Link color="inherit" href="https://github.com/BushakCZ">
-        BushakCZ
-      </Link>{' '}
-      <Link color="inherit" href="https://github.com/MicolopoCZ">
-        MicolopoCZ
-      </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -163,7 +157,7 @@ export default function MainPage() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
             </Grid>
-            <Copyright sx={{ pt: 4 }} />
+            <Copyright sx={{ pt: 1 }} />
           </Container>
         </Box>
       </Box>
