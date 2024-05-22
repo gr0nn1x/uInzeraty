@@ -48,21 +48,70 @@ export const secondaryListItems = (
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Přeprava" />
+      <ListItemText primary="Elektronika" />
     </ListItemButton>
 
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Nábytek" />
+      <ListItemText primary="Vozidla" />
     </ListItemButton>
 
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Předměty" />
+      <ListItemText primary="Gaming" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Domácnost" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Drogérie" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Hračky" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Zvířata" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Potraviny a nápoje" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Sport" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Knihy" />
     </ListItemButton>
 
   </React.Fragment>
