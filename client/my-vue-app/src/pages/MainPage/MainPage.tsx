@@ -38,7 +38,7 @@ export default function MainPage() {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <Navbar title="Hlavní stránka" /> {/* Use the Navbar component */}
+        <Navbar title="Název bazaru" /> {/* Use the Navbar component */}
         <Box
           component="main"
           sx={{
