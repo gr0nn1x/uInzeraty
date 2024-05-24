@@ -15,7 +15,6 @@ const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
-    position: "fixed", // Set position to fixed
     top: 0, // Align to the top of the viewport
     bottom: 0, // Align to the bottom of the viewport
     zIndex: theme.zIndex.drawer,
