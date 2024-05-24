@@ -29,12 +29,14 @@ export const mainListItems = (
       </ListItemButton>
     </Link>
     
+    <Link to="/myposts">
     <ListItemButton>
       <ListItemIcon>
         <Preview />
       </ListItemIcon>
       <ListItemText primary="Moje inzeráty" />
     </ListItemButton>
+    </Link>
   </React.Fragment>
 );
 
