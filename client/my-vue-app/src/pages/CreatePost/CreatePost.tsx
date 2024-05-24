@@ -47,6 +47,56 @@ export default function CreatePost() {
         >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
+              <Box>
+                <Typography variant="h6" style={{ color: "black" }}>Product Name</Typography>
+                <TextField fullWidth variant="outlined" margin="normal" />
+
+                <Typography variant="h6" style={{ color: "black" }}>Specifications</Typography>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  margin="normal"
+                  placeholder=""
+                />
+
+                <Typography variant="h6" style={{ color: "black" }}>Description</Typography>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  margin="normal"
+                  multiline
+                  rows={4}
+                />
+
+                <Typography variant="h6" style={{ color: "black" }}>Contact Information</Typography>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  margin="normal"
+                  placeholder="Your Name"
+                />
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  margin="normal"
+                  placeholder="Address"
+                />
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  margin="normal"
+                  placeholder="Price"
+                />
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  margin="normal"
+                  type="password"
+                  placeholder="Password"
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6}>
               <Button
                 variant="contained"
                 component="label"
@@ -119,56 +169,6 @@ export default function CreatePost() {
                     </Box>
                   </>
                 )}
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Box>
-                <Typography variant="h6">Product Name</Typography>
-                <TextField fullWidth variant="outlined" margin="normal" />
-
-                <Typography variant="h6">Specifications</Typography>
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  placeholder="16GB RAM, 128GB Disk Space, etc."
-                />
-
-                <Typography variant="h6">Description</Typography>
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  multiline
-                  rows={4}
-                />
-
-                <Typography variant="h6">Contact Information</Typography>
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  placeholder="Your Name"
-                />
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  placeholder="Address"
-                />
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  placeholder="Price"
-                />
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  type="password"
-                  placeholder="Password"
-                />
               </Box>
             </Grid>
           </Grid>
