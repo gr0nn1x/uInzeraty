@@ -31,16 +31,13 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 
-interface NavbarProps {
-  title: string;
-}
 
-const Navbar: React.FC<NavbarProps> = ({ title }) => {
+
+const Navbar: React.FC = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <Drawer variant="permanent" open>
         <div style={{ overflow: "auto", marginTop: 0 }}>
-          {/* Wrapped image with anchor tag */}
           <a href="/">
             <img
               src="/logo.png"

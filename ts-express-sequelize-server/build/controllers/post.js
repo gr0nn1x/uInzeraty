@@ -49,7 +49,7 @@ const createPost = async (req, res) => {
         const salt = await (0, bcrypt_1.genSalt)(10);
         const hashedString = await (0, bcrypt_1.hash)(password, salt);
         const createdPost = await Posting.create({
-            photo: photo,
+            photo: req.file?.filename,
             email: email,
             postname: postname,
             password: hashedString,
@@ -113,27 +113,4 @@ const saveFileIntoFolder = (req, res, next) => {
         next();
     });
 };
-const saveIntoDb = async (req, res) => {
-    try {
-        const upload = new Post({
-            name: req.body.photo,
-            imagePath: `http://localhost:3000/api/v${process.env.API_VER}/img` +
-                req.file?.filename,
-        });
-        const result = await upload.save();
-        if (result) {
-            return res.status(201).json({
-                msg: "Upload created!",
-                payload: result,
-            });
-        }
-        res.status(500).json({ msg: "Upload failed" });
-    }
-    catch (error) {
-        console.log(error);
-        res.status(500).json({
-            error,
-        });
-    }
-};
-exports.postUpload = [saveFileIntoFolder, saveIntoDb];
+exports.postUpload = [saveFileIntoFolder, exports.createPost];
