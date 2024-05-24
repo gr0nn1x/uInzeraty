@@ -1,10 +1,6 @@
-export const createPost = async (formData: Post) => {
+export const createPost = async (formData) => {
   const res = await fetch("http://localhost:3000/api/v1/post", {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
+    body: formData,
     method: "POST",
   });
   const data = await res.json();

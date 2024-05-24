@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletePost = exports.updatePost = exports.createPost = exports.getPostById = exports.getAllPosts = void 0;
+exports.postUpload = exports.deletePost = exports.updatePost = exports.createPost = exports.getPostById = exports.getAllPosts = void 0;
 const bcrypt_1 = require("bcrypt");
 const index_1 = __importDefault(require("../models/index"));
 const Posting = index_1.default.posts;
@@ -117,7 +117,7 @@ const saveIntoDb = async (req, res) => {
     try {
         const upload = new Post({
             name: req.body.photo,
-            imagePath: `http://localhost:3000/api/v${process.env.API_VER}/src/img/` +
+            imagePath: `http://localhost:3000/api/v${process.env.API_VER}/img` +
                 req.file?.filename,
         });
         const result = await upload.save();

@@ -12,6 +12,7 @@ const storage = multer.diskStorage({
 });
 
 const filter = (req: Request, file: IFile, cb: CallableFunction) => {
+ //TODO validace here a na klientovi 
   file.mimetype === "image/jpeg" ||
   file.mimetype === "image/png" ||
   file.mimetype === "image/gif"
