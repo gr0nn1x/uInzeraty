@@ -1,128 +1,121 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { createPost } from "../../models/Post";
+import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import Navbar from '../Navbar/Navbar'; // Import the Navbar component
- 
+import Navbar from "../Navbar/Navbar";
+
 export default function CreatePost() {
   const [info, setInfo] = useState();
+  const [formData, setFormData] = useState({});
   const navigate = useNavigate();
- 
+  const imgRef = useRef<HTMLInputElement>(null);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const post = await createPost({
-      postname: data.get("postname") as string,
-      email: data.get("email") as string,
-      password: data.get("password") as string,
-      photo: data.get("photo") as string,
-    });
- 
+    const formDataToSend = new FormData();
+    for (const [key, value] of Object.entries(formData)) {
+      formDataToSend.append(key, value);
+    }
+    formDataToSend.append("photo", imgRef.current.files[0]);
+    console.log(...formDataToSend);
+    const post = await createPost(formDataToSend);
+
     if (post.status === 201) return navigate("/");
     if (post.status === 400) return setInfo(post.msg);
     if (post.status === 500) return navigate("/");
   };
- 
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const defaultTheme = createTheme();
- 
+
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Navbar/> {/* Add Navbar component */}
-      <Container component="main" sx={{ marginLeft: '250px' }}> {/* Add paddingLeft */}
+      <Navbar title="Create Post" /> 
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{ marginLeft: "240px", paddingLeft: "16px" }}
+      >
+        {" "}
+        {/* Add paddingLeft */}
         <CssBaseline />
         <Box
           sx={{
+            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
           <Typography component="h1" variant="h5">
-            Nový inzerát
+            Create Post
           </Typography>
           <Box
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3, width: '100%' }} // Adjust width to 100%
+            sx={{ mt: 3, width: "100%" }} 
           >
-              <Grid container justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo"/>
-                </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-name"
+                  name="postname"
+                  required
+                  fullWidth
+                  id="postname"
+                  label="Post Name"
+                  autoFocus
+                  onChange={handleChange}
+                />
               </Grid>
-            <Grid container>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
-                </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  onChange={handleChange}
+                />
               </Grid>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
-                </Grid>
-              </Grid>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
-                </Grid>
-              </Grid>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
-                </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                  onChange={handleChange}
+                />
               </Grid>
             </Grid>
-            <Grid container spacing={0}>
-            <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="name"                     // předělat
-                  label="Jméno"
-                  type="name"                     // předělat
-                  id="name"                       // předělat
-                  autoComplete="given-name"       // předělat
-                />
+            <Grid container justifyContent="center">
+              <Grid item>
+                <input ref={imgRef} type="file" name="photo" id="photo" />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="phone"                   // předělat
-                  label="Telefon"
-                  type="phone"                   // předělat
-                  id="phone"                     // předělat
-                  autoComplete="given-phone"     // předělat
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="address"                   // předělat
-                  label="Adresa"
-                  type="address"                   // předělat
-                  id="address"                     // předělat
-                  autoComplete="given-address"     // předělat
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="price"                   // předělat
-                  label="Cena"
-                  type="price"                   // předělat
-                  id="price"                     // předělat
-                />
+              <Grid item>
+                <Button variant="contained" color="primary" component="span">
+                  Upload
+                </Button>
               </Grid>
             </Grid>
             <Button
@@ -131,7 +124,7 @@ export default function CreatePost() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Zaslat inzerát
+              Create Post
             </Button>
             <p>{info}</p>
           </Box>
