@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { createPost } from "../../models/Post";
@@ -11,33 +11,45 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import Navbar from '../Navbar/Navbar'; // Import the Navbar component
+import Navbar from "../Navbar/Navbar";
 
 export default function CreatePost() {
   const [info, setInfo] = useState();
+  const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+  const imgRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const post = await createPost({
-      postname: data.get("postname") as string,
-      email: data.get("email") as string,
-      password: data.get("password") as string,
-      photo: data.get("photo") as string,
-    });
+    const formDataToSend = new FormData();
+    for (const [key, value] of Object.entries(formData)) {
+      formDataToSend.append(key, value);
+    }
+    formDataToSend.append("photo", imgRef.current.files[0]);
+    console.log(...formDataToSend);
+    const post = await createPost(formDataToSend);
 
     if (post.status === 201) return navigate("/");
     if (post.status === 400) return setInfo(post.msg);
     if (post.status === 500) return navigate("/");
   };
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const defaultTheme = createTheme();
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Navbar title="Create Post" /> {/* Add Navbar component */}
-      <Container component="main" maxWidth="xs" sx={{ marginLeft: '240px', paddingLeft: '16px' }}> {/* Add paddingLeft */}
+      <Navbar title="Create Post" /> 
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{ marginLeft: "240px", paddingLeft: "16px" }}
+      >
+        {" "}
+        {/* Add paddingLeft */}
         <CssBaseline />
         <Box
           sx={{
@@ -57,7 +69,7 @@ export default function CreatePost() {
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3, width: '100%' }} // Adjust width to 100%
+            sx={{ mt: 3, width: "100%" }} 
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -69,6 +81,7 @@ export default function CreatePost() {
                   id="postname"
                   label="Post Name"
                   autoFocus
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -79,6 +92,7 @@ export default function CreatePost() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -90,14 +104,15 @@ export default function CreatePost() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
-            <Grid container justifyContent="center"> {/* Center the grid container */}
-              <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                <TextField type="file" name="photo" id="photo" />
+            <Grid container justifyContent="center">
+              <Grid item>
+                <input ref={imgRef} type="file" name="photo" id="photo" />
               </Grid>
-              <Grid item> {/* Wrap the file input and upload button in a Grid item */}
+              <Grid item>
                 <Button variant="contained" color="primary" component="span">
                   Upload
                 </Button>
