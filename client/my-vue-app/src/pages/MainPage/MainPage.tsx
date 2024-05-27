@@ -12,7 +12,7 @@ export default function Home() {
     const data = await getUploads();
     console.log(data);
     if (data.status === 200) {
-      setUploads(data.payload);
+      setUploads(data.payload); 
       setLoaded(true);
     } else {
       setLoaded(null);
