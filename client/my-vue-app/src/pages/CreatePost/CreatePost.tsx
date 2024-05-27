@@ -120,7 +120,7 @@ export default function CreatePost() {
                   autoComplete="new-password"
                   onChange={handleChange}
                 />
-              </Box>
+              </Grid>
             </Grid>
             <Grid container justifyContent="center">
               <Grid item>
@@ -132,7 +132,6 @@ export default function CreatePost() {
                 </Button>
               </Grid>
             </Grid>
-          </Grid>
         </Box>
       </Box>
     </ThemeProvider>
