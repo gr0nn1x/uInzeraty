@@ -43,7 +43,7 @@ export default function Home() {
       ) : (
         <p>Loading</p>
       )}
-      <Link to={"/upload"}>
+      <Link to={"/createpost"}>
         <p>Upload new image</p>
       </Link>
     </>
