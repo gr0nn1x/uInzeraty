@@ -1,41 +1,56 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+import { createPost } from "../../models/Post";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import Navbar from "../Navbar/Navbar";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import ImageIcon from "@mui/icons-material/Image";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-
-const drawerWidth = 240; // This should match the width used in Navbar
 
 export default function CreatePost() {
-  const defaultTheme = createTheme();
-  const [images, setImages] = useState<File[]>([]);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [info, setInfo] = useState();
+  const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
+  const imgRef = useRef<HTMLInputElement>(null);
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setImages(Array.from(event.target.files));
-      setCurrentImageIndex(0); // Show the first image by default
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formDataToSend = new FormData();
+    for (const [key, value] of Object.entries(formData)) {
+      formDataToSend.append(key, value);
     }
+    formDataToSend.append("photo", imgRef.current.files[0]);
+    console.log(...formDataToSend);
+    const post = await createPost(formDataToSend);
+
+    if (post.status === 201) return navigate("/");
+    if (post.status === 400) return setInfo(post.msg);
+    if (post.status === 500) return navigate("/");
   };
 
-  const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : images.length - 1
-    );
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex < images.length - 1 ? prevIndex + 1 : 0
-    );
-  };
+  const defaultTheme = createTheme();
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box sx={{ display: "flex" }}>
-        <Navbar title="Create Post" />
+      <Navbar title="Create Post" /> 
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{ marginLeft: "240px", paddingLeft: "16px" }}
+      >
+        {" "}
+        {/* Add paddingLeft */}
+        <CssBaseline />
         <Box
           component="main"
           sx={{
@@ -45,27 +60,36 @@ export default function CreatePost() {
             marginLeft: `${drawerWidth}px`,
           }}
         >
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <Box>
-                <Typography variant="h6" style={{ color: "black" }}>Product Name</Typography>
-                <TextField fullWidth variant="outlined" margin="normal" />
-
-                <Typography variant="h6" style={{ color: "black" }}>Specifications</Typography>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Create Post
+          </Typography>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3, width: "100%" }} 
+          >
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  placeholder=""
+                  id="postname"
+                  label="Post Name"
+                  autoFocus
+                  onChange={handleChange}
                 />
 
                 <Typography variant="h6" style={{ color: "black" }}>Description</Typography>
                 <TextField
                   fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  multiline
-                  rows={4}
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  onChange={handleChange}
                 />
 
                 <Typography variant="h6" style={{ color: "black" }}>Contact Information</Typography>
@@ -92,84 +116,21 @@ export default function CreatePost() {
                   variant="outlined"
                   margin="normal"
                   type="password"
-                  placeholder="Password"
+                  id="password"
+                  autoComplete="new-password"
+                  onChange={handleChange}
                 />
               </Box>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <Button
-                variant="contained"
-                component="label"
-                fullWidth
-                startIcon={<ImageIcon />}
-              >
-                Upload Images
-                <input
-                  type="file"
-                  hidden
-                  multiple
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                />
-              </Button>
-              <Box sx={{ mt: 2 }}>
-                {images.length > 0 && (
-                  <>
-                    <Box sx={{ display: "flex", justifyContent: "center" }}>
-                      <img
-                        src={URL.createObjectURL(images[currentImageIndex])}
-                        alt={`Preview ${currentImageIndex + 1}`}
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          maxHeight: 300,
-                        }}
-                      />
-                    </Box>
-                    <Box
-                      sx={{ display: "flex", justifyContent: "center", mt: 1 }}
-                    >
-                      <Button
-                        variant="contained"
-                        onClick={handlePrevImage}
-                        startIcon={<ArrowBackIcon />}
-                        sx={{ mr: 1 }}
-                      >
-                        Previous
-                      </Button>
-                      <Button
-                        variant="contained"
-                        onClick={handleNextImage}
-                        endIcon={<ArrowForwardIcon />}
-                      >
-                        Next
-                      </Button>
-                    </Box>
-                    <Box
-                      sx={{ display: "flex", mt: 2, overflowX: "auto", gap: 1 }}
-                    >
-                      {images.map((image, index) => (
-                        <img
-                          key={index}
-                          src={URL.createObjectURL(image)}
-                          alt={`Preview ${index + 1}`}
-                          style={{
-                            width: 60,
-                            height: 60,
-                            objectFit: "cover",
-                            border:
-                              currentImageIndex === index
-                                ? "2px solid blue"
-                                : "none",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => setCurrentImageIndex(index)}
-                        />
-                      ))}
-                    </Box>
-                  </>
-                )}
-              </Box>
+            <Grid container justifyContent="center">
+              <Grid item>
+                <input ref={imgRef} type="file" name="photo" id="photo" />
+              </Grid>
+              <Grid item>
+                <Button variant="contained" color="primary" component="span">
+                  Upload
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Box>

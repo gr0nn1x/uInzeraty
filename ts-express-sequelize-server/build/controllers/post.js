@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletePost = exports.updatePost = exports.createPost = exports.getPostById = exports.getAllPosts = void 0;
+exports.postUpload = exports.deletePost = exports.updatePost = exports.createPost = exports.getPostById = exports.getAllPosts = void 0;
 const bcrypt_1 = require("bcrypt");
 const index_1 = __importDefault(require("../models/index"));
 const Posting = index_1.default.posts;
@@ -49,7 +49,7 @@ const createPost = async (req, res) => {
         const salt = await (0, bcrypt_1.genSalt)(10);
         const hashedString = await (0, bcrypt_1.hash)(password, salt);
         const createdPost = await Posting.create({
-            photo: photo,
+            photo: req.file?.filename,
             email: email,
             postname: postname,
             password: hashedString,
@@ -113,27 +113,4 @@ const saveFileIntoFolder = (req, res, next) => {
         next();
     });
 };
-const saveIntoDb = async (req, res) => {
-    try {
-        const upload = new Post({
-            name: req.body.photo,
-            imagePath: `http://localhost:3000/api/v${process.env.API_VER}/src/img/` +
-                req.file?.filename,
-        });
-        const result = await upload.save();
-        if (result) {
-            return res.status(201).json({
-                msg: "Upload created!",
-                payload: result,
-            });
-        }
-        res.status(500).json({ msg: "Upload failed" });
-    }
-    catch (error) {
-        console.log(error);
-        res.status(500).json({
-            error,
-        });
-    }
-};
-exports.postUpload = [saveFileIntoFolder, saveIntoDb];
+exports.postUpload = [saveFileIntoFolder, exports.createPost];
