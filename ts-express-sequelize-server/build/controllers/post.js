@@ -49,7 +49,7 @@ const createPost = async (req, res) => {
         const salt = await (0, bcrypt_1.genSalt)(10);
         const hashedString = await (0, bcrypt_1.hash)(password, salt);
         const createdPost = await Posting.create({
-            photo: req.file?.filename,
+            photo: "http://localhost:3000/api/v1/post/build/img/" + req.file?.filename,
             email: email,
             postname: postname,
             password: hashedString,
