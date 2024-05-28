@@ -53,7 +53,15 @@ export default function CreatePost() {
             onSubmit={handleSubmit}
             sx={{ mt: 3, width: '100%' }} // Adjust width to 100%
           >
-              <Grid container justifyContent="center"> {/* Center the grid container */}
+          <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "left",
+          }}
+          >
+          <Box>
+            <Grid container justifyContent="center"> {/* Center the grid container */}
                 <Grid item> {/* Wrap the file input and upload button in a Grid item */}
                   <TextField type="file" name="photo" id="photo"/>
                 </Grid>
@@ -80,6 +88,8 @@ export default function CreatePost() {
                 </Grid>
               </Grid>
             </Grid>
+          </Box>
+        </Box>
             <Grid container spacing={0}>
             <Grid item xs={12}>
                 <TextField
@@ -124,6 +134,16 @@ export default function CreatePost() {
                   id="price"                     // předělat
                 />
               </Grid>
+            </Grid>
+            <Grid container xs={"auto"}>
+                <TextField
+                  required
+                  fullWidth
+                  name="desc"                     // předělat
+                  label="Popis"
+                  type="desc"                     // předělat
+                  id="desc"                       // předělat
+                />
             </Grid>
             <Button
               type="submit"
