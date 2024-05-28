@@ -8,9 +8,11 @@ const app = express();
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
-app.use(cors());                                          
+app.use(cors());
 
 db.sequelize.sync({ force: false, alter: false });
+
+app.use(express.static("public"));
 
 app.use(`/api/v${process.env.API_VER}/post`, require("./routes/post"));
 

@@ -38,7 +38,7 @@ export const createPost = async (req: Request, res: Response) => {
     const salt = await genSalt(10);
     const hashedString = await hash(password, salt);
     const createdPost = await Posting.create({
-      photo: req.file?.filename,
+      photo: "http://localhost:3000/api/v1/post/build/img/" + req.file?.filename,
       email: email,
       postname: postname,
       password: hashedString,

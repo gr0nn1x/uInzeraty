@@ -13,6 +13,7 @@ app.use(express_1.default.json());
 const PORT = process.env.PORT || 3000;
 app.use(cors());
 index_1.default.sequelize.sync({ force: false, alter: false });
+app.use(express_1.default.static("public"));
 app.use(`/api/v${process.env.API_VER}/post`, require("./routes/post"));
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`);
