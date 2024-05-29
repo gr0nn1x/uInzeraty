@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getUploads } from "../../models/Post";
 import { useEffect, useState } from "react";
 import Product from "../../components/Product";
+import Navbar from "../Navbar/Navbar";
 
 export default function Home() {
   const [uploads, setUploads] = useState();
@@ -37,6 +38,7 @@ export default function Home() {
 
   return (
     <>
+      <Navbar title="Create Post" />
       <h1>Home page</h1>
       {isLoaded ? (
         uploads.map((upload, index) => <Product key={index} {...upload} />)

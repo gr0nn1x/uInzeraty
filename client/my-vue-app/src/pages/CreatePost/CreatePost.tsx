@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Navbar from "../Navbar/Navbar";
+import "./CreatePost.css";
 
 export default function CreatePost() {
   const [info, setInfo] = useState();
@@ -42,11 +43,11 @@ export default function CreatePost() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Navbar title="Create Post" /> 
+      <Navbar title="Create Post" />
       <Container
         component="main"
         maxWidth="xs"
-        sx={{ marginLeft: "240px", paddingLeft: "16px" }}
+        sx={{ marginLeft: "800px", paddingLeft: "16px" }}
       >
         {" "}
         {/* Add paddingLeft */}
@@ -69,7 +70,7 @@ export default function CreatePost() {
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3, width: "100%" }} 
+            sx={{ mt: 3, width: "100%" }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -112,11 +113,7 @@ export default function CreatePost() {
               <Grid item>
                 <input ref={imgRef} type="file" name="photo" id="photo" />
               </Grid>
-              <Grid item>
-                <Button variant="contained" color="primary" component="span">
-                  Upload
-                </Button>
-              </Grid>
+              <Grid item></Grid>
             </Grid>
             <Button
               type="submit"

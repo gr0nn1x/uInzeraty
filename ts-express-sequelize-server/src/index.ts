@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import cors = require("cors");
 import db from "./models/index";
+import path = require("path");
 
 const app = express();
 app.use(express.json());
@@ -12,7 +13,7 @@ app.use(cors());
 
 db.sequelize.sync({ force: false, alter: false });
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(`/api/v${process.env.API_VER}/post`, require("./routes/post"));
 
