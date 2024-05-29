@@ -30,7 +30,7 @@ export const getPostById = async (req: Request, res: Response) => {
 };
 export const createPost = async (req: Request, res: Response) => {
   try {
-    const { email, postname, password, photo } = req.body;
+    const { email, postname, password, photo, category } = req.body;
     if (!email || !password || !postname)
       return res.status(400).send({ message: "Missing details!" });
     const post: any = await Posting.findOne({ where: { email: email } });
@@ -41,6 +41,7 @@ export const createPost = async (req: Request, res: Response) => {
       photo: "http://localhost:3000/img/" + req.file?.filename,
       email: email,
       postname: postname,
+      category: category,
       password: hashedString,
     });
     return res.status(201).send({ message: "Post created" });
