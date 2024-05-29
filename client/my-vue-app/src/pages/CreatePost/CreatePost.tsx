@@ -53,45 +53,47 @@ export default function CreatePost() {
             onSubmit={handleSubmit}
             sx={{ mt: 3, width: '100%' }} // Adjust width to 100%
           >
-          <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "left",
-          }}
-          >
-          <Box>
-            <Grid container justifyContent="center"> {/* Center the grid container */}
+            <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "left",
+            }}
+            >
+            <Box>
+              <Grid container justifyContent="center"> {/* Center the grid container */}
                 <Grid item> {/* Wrap the file input and upload button in a Grid item */}
                   <TextField type="file" name="photo" id="photo"/>
                 </Grid>
               </Grid>
-            <Grid container>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
+
+              <Grid container>
+                <Grid xs justifyContent="center"> {/* Center the grid container */}
+                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
+                    <TextField type="file" name="photo" id="photo" />
+                  </Grid>
+                </Grid>
+                <Grid xs justifyContent="center"> {/* Center the grid container */}
+                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
+                    <TextField type="file" name="photo" id="photo" />
+                  </Grid>
+                </Grid>
+                <Grid xs justifyContent="center"> {/* Center the grid container */}
+                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
+                    <TextField type="file" name="photo" id="photo" />
+                  </Grid>
+                </Grid>
+                <Grid xs justifyContent="center"> {/* Center the grid container */}
+                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
+                    <TextField type="file" name="photo" id="photo" />
+                  </Grid>
                 </Grid>
               </Grid>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
-                </Grid>
-              </Grid>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
-                </Grid>
-              </Grid>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
-                </Grid>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
+            </Box>
+            </Box>
+
             <Grid container spacing={0}>
-            <Grid item xs={12}>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -136,14 +138,14 @@ export default function CreatePost() {
               </Grid>
             </Grid>
             <Grid container xs={"auto"}>
-                <TextField
-                  required
-                  fullWidth
-                  name="desc"                     // předělat
-                  label="Popis"
-                  type="desc"                     // předělat
-                  id="desc"                       // předělat
-                />
+              <TextField
+                required
+                fullWidth
+                name="desc"                     // předělat
+                label="Popis"
+                type="desc"                     // předělat
+                id="desc"                       // předělat
+              />
             </Grid>
             <Button
               type="submit"
