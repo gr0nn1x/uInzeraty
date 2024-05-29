@@ -38,7 +38,7 @@ export const createPost = async (req: Request, res: Response) => {
     const salt = await genSalt(10);
     const hashedString = await hash(password, salt);
     const createdPost = await Posting.create({
-      photo: photo,
+      photo: "http://localhost:3000/img/" + req.file?.filename,
       email: email,
       postname: postname,
       password: hashedString,
@@ -100,28 +100,4 @@ const saveFileIntoFolder = (
   });
 };
 
-const saveIntoDb = async (req: Request, res: Response) => {
-  try {
-    const upload = new Post({
-      name: req.body.photo,
-      imagePath:
-        `http://localhost:3000/api/v${process.env.API_VER}/src/img/` +
-        req.file?.filename,
-    }); 
-    const result = await upload.save();
-    if (result) {
-      return res.status(201).json({
-        msg: "Upload created!",
-        payload: result,
-      });
-    }
-    res.status(500).json({ msg: "Upload failed" });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      error,
-    });
-  }
-};
-
-exports.postUpload = [saveFileIntoFolder, saveIntoDb];
+export const postUpload = [saveFileIntoFolder, createPost];
