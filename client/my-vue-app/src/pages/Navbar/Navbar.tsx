@@ -42,10 +42,8 @@ const Navbar: React.FC = () => {
               style={{ margin: "20px auto", display: "block", maxWidth: "40%", cursor: "pointer" }}
             />
           </a>
-          <Divider />
           <List component="nav">
             {mainListItems}
-            <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
         </div>
