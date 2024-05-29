@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 export const mainListItems = (
   <React.Fragment>
-    <Link to="/">
+    <Link to="/" style={{color: "white"}}>
     <ListItemButton>
       <ListItemIcon>
         <DashboardIcon />
@@ -20,7 +20,7 @@ export const mainListItems = (
     </ListItemButton>
     </Link>
 
-    <Link to="/createpost">
+    <Link to="/createpost" style={{color: "white"}}>
       <ListItemButton>
         <ListItemIcon>
           <PostAdd />
@@ -28,19 +28,21 @@ export const mainListItems = (
         <ListItemText primary="Přidat inzerát" />
       </ListItemButton>
     </Link>
+    <Link to="" style={{color: "white"}}>
+      <ListItemButton>
+        <ListItemIcon>
+          <Preview />
+        </ListItemIcon>
+        <ListItemText primary="Moje inzeráty" />
+      </ListItemButton>
+    </Link>
     
-    <ListItemButton>
-      <ListItemIcon>
-        <Preview />
-      </ListItemIcon>
-      <ListItemText primary="Moje inzeráty" />
-    </ListItemButton>
   </React.Fragment>
 );
 
 export const secondaryListItems = (
-  <React.Fragment>
-    <ListSubheader component="div" inset>
+  <React.Fragment >
+    <ListSubheader component="div" inset style={{color: "white", backgroundColor: "#8B0000"}}>
       Kategorie
     </ListSubheader>
 
