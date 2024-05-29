@@ -15,9 +15,9 @@ const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
-    position: "fixed", // Set position to fixed
-    top: 0, // Align to the top of the viewport
-    bottom: 0, // Align to the bottom of the viewport
+    position: "fixed", 
+    top: 0, 
+    bottom: 0, 
     zIndex: theme.zIndex.drawer,
     width: drawerWidth,
     transition: theme.transitions.create("width", {
@@ -26,12 +26,9 @@ const Drawer = styled(MuiDrawer, {
     }),
     boxSizing: "border-box",
     overflowX: "hidden",
-    height: "100vh", // Set height to 100% of viewport height
+    height: "100vh",
   },
 }));
-
-
-
 
 const Navbar: React.FC = () => {
   return (
