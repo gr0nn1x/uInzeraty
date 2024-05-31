@@ -27,10 +27,13 @@ export default function Home() {
   if (isLoaded === null) {
     return (
       <>
+        <Navbar title="Create Post" />
         <h1>Home page</h1>
         <p>Images not found</p>
         <Link to={"/createpost"}>
-          <p>Upload new image</p>
+          <p style={{ marginLeft: "300px", paddingLeft: "16px" }}>
+            Upload new image
+          </p>
         </Link>
       </>
     );
@@ -46,7 +49,9 @@ export default function Home() {
         <p>Loading</p>
       )}
       <Link to={"/createpost"}>
-        <p>Upload new image</p>
+        <p style={{ marginLeft: "300px", paddingLeft: "16px" }}>
+          Upload new image
+        </p>
       </Link>
     </>
   );
