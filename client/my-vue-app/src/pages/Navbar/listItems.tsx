@@ -21,6 +21,9 @@ import Divider from "@mui/material/Divider";
 
 export const mainListItems = (
   <React.Fragment>
+    <ListSubheader component="div" style={{color: "white", backgroundColor: "#2E2E2E"}}>
+      <h3>Přehled</h3>
+    </ListSubheader>
     <Link to="/" style={{color: "white"}}>
     <ListItemButton>
       <ListItemIcon>
@@ -36,14 +39,6 @@ export const mainListItems = (
           <PostAdd style={{color: "white"}}/>
         </ListItemIcon>
         <ListItemText primary="Přidat inzerát" />
-      </ListItemButton>
-    </Link>
-    <Link to="" style={{color: "white"}}>
-      <ListItemButton>
-        <ListItemIcon>
-          <Preview style={{color: "white"}}/>
-        </ListItemIcon>
-        <ListItemText primary="Moje inzeráty" />
       </ListItemButton>
     </Link>
     
