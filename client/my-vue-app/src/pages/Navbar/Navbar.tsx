@@ -2,10 +2,7 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import { mainListItems, secondaryListItems } from "./listItems";
 
@@ -13,42 +10,36 @@ const drawerWidth: number = 240;
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+})(({ theme }) => ({
   "& .MuiDrawer-paper": {
-    position: "fixed", // Set position to fixed
-    top: 0, // Align to the top of the viewport
-    bottom: 0, // Align to the bottom of the viewport
+    position: "fixed",                                      // Set position to fixed
+    top: 0,                                                 // Align to the top of the viewport
+    bottom: 0,                                              // Align to the bottom of the viewport
     zIndex: theme.zIndex.drawer,
     width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
     boxSizing: "border-box",
     overflowX: "hidden",
-    height: "100vh", // Set height to 100% of viewport height
+    height: "100vh",                                        // Set height to 100% of viewport height
+    background: "#2E2E2E"                                   // Set backgoundColor of the navbar
   },
 }));
-
-
-
-
 const Navbar: React.FC = () => {
+
   return (
     <Box sx={{ display: "flex" }}>
-      <Drawer variant="permanent" open>
-        <div style={{ overflow: "auto", marginTop: 0 }}>
+      <Drawer variant="permanent">
+        <div style={{ overflow: "auto", marginTop: 0, backgroundColor: "#2E2E2E", color: "White" }}>
           <a href="/">
             <img
               src="/logo.png"
               alt="Logo"
-              style={{ margin: "20px auto", display: "block", maxWidth: "40%", cursor: "pointer" }}
+              style={{ margin: "20px auto", display: "block", maxWidth: "40%", cursor: "pointer"}}
             />
           </a>
-          <Divider />
+          <Divider style={{border: "solid, gray, 1px"}}/>
           <List component="nav">
             {mainListItems}
-            <Divider sx={{ my: 1 }} />
+            <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
             {secondaryListItems}
           </List>
         </div>
