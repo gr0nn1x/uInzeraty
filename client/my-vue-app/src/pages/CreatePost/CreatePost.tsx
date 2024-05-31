@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { createPost } from "../../models/Post";
@@ -9,25 +9,32 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import Navbar from '../Navbar/Navbar'; // Import the Navbar component
+import Navbar from "../Navbar/Navbar";
+import "./CreatePost.css";
 
 export default function CreatePost() {
   const [info, setInfo] = useState();
+  const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+  const imgRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const post = await createPost({
-      postname: data.get("postname") as string,
-      email: data.get("email") as string,
-      password: data.get("password") as string,
-      photo: data.get("photo") as string,
-    });
+    const formDataToSend = new FormData();
+    for (const [key, value] of Object.entries(formData)) {
+      formDataToSend.append(key, value);
+    }
+    formDataToSend.append("photo", imgRef.current.files[0]);
+    console.log(...formDataToSend);
+    const post = await createPost(formDataToSend);
 
     if (post.status === 201) return navigate("/");
     if (post.status === 400) return setInfo(post.msg);
     if (post.status === 500) return navigate("/");
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const defaultTheme = createTheme();
@@ -53,35 +60,47 @@ export default function CreatePost() {
             onSubmit={handleSubmit}
             sx={{ mt: 3, width: '100%' }} // Adjust width to 100%
           >
+            <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "left",
+            }}
+            >
+            <Box>
               <Grid container justifyContent="center"> {/* Center the grid container */}
                 <Grid item> {/* Wrap the file input and upload button in a Grid item */}
                   <TextField type="file" name="photo" id="photo"/>
                 </Grid>
               </Grid>
-            <Grid container>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
+
+              <Grid container>
+                <Grid xs justifyContent="center"> {/* Center the grid container */}
+                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
+                    <TextField type="file" name="photo" id="photo" />
+                  </Grid>
+                </Grid>
+                <Grid xs justifyContent="center"> {/* Center the grid container */}
+                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
+                    <TextField type="file" name="photo" id="photo" />
+                  </Grid>
+                </Grid>
+                <Grid xs justifyContent="center"> {/* Center the grid container */}
+                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
+                    <TextField type="file" name="photo" id="photo" />
+                  </Grid>
+                </Grid>
+                <Grid xs justifyContent="center"> {/* Center the grid container */}
+                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
+                    <TextField type="file" name="photo" id="photo" />
+                  </Grid>
                 </Grid>
               </Grid>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
-                </Grid>
-              </Grid>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
-                </Grid>
-              </Grid>
-              <Grid xs justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo" />
-                </Grid>
-              </Grid>
-            </Grid>
+            </Box>
+            </Box>
+
             <Grid container spacing={0}>
-            <Grid item xs={12}>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -124,6 +143,16 @@ export default function CreatePost() {
                   id="price"                     // předělat
                 />
               </Grid>
+            </Grid>
+            <Grid container xs={"auto"}>
+              <TextField
+                required
+                fullWidth
+                name="desc"                     // předělat
+                label="Popis"
+                type="desc"                     // předělat
+                id="desc"                       // předělat
+              />
             </Grid>
             <Button
               type="submit"
