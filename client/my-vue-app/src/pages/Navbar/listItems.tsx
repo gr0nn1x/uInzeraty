@@ -1,22 +1,23 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PostAdd from "@mui/icons-material/PostAdd";
-import ComputerIcon from "@mui/icons-material/Computer";
+import Divider from "@mui/material/Divider";
+
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
-import HomeIcon from "@mui/icons-material/Home";
 import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
+import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ComputerIcon from "@mui/icons-material/Computer";
+import FastfoodIcon from "@mui/icons-material/Fastfood";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import PostAdd from "@mui/icons-material/PostAdd";
 import ToysIcon from "@mui/icons-material/Toys";
 import PetsIcon from "@mui/icons-material/Pets";
-import FastfoodIcon from "@mui/icons-material/Fastfood";
-import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import { Link } from "react-router-dom";
-import Divider from "@mui/material/Divider";
+import HomeIcon from "@mui/icons-material/Home";
 
 export const mainListItems = (
   <React.Fragment>
