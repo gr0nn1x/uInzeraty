@@ -51,7 +51,6 @@ export const secondaryListItems = (
       <h3>Kategorie</h3>
     </ListSubheader>
 
-    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
         <ComputerIcon style={{color: "white"}}/>
@@ -59,7 +58,6 @@ export const secondaryListItems = (
       <ListItemText primary="Elektronika" />
     </ListItemButton>
 
-    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
         <DirectionsCarIcon style={{color: "white"}}/>
@@ -67,7 +65,6 @@ export const secondaryListItems = (
       <ListItemText primary="Vozidla" />
     </ListItemButton>
 
-    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
         <SportsEsportsIcon style={{color: "white"}}/>
@@ -75,7 +72,6 @@ export const secondaryListItems = (
       <ListItemText primary="Gaming" />
     </ListItemButton>
 
-    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
         <HomeIcon style={{color: "white"}}/>
@@ -83,7 +79,6 @@ export const secondaryListItems = (
       <ListItemText primary="Domácnost" />
     </ListItemButton>
 
-    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
         <LocalPharmacyIcon style={{color: "white"}}/>
@@ -91,7 +86,6 @@ export const secondaryListItems = (
       <ListItemText primary="Drogérie" />
     </ListItemButton>
 
-    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
         <ToysIcon style={{color: "white"}}/>
@@ -99,7 +93,6 @@ export const secondaryListItems = (
       <ListItemText primary="Hračky" />
     </ListItemButton>
 
-    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
         <PetsIcon style={{color: "white"}}/>
@@ -107,7 +100,6 @@ export const secondaryListItems = (
       <ListItemText primary="Zvířata" />
     </ListItemButton>
 
-    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
         <FastfoodIcon style={{color: "white"}}/>
@@ -115,7 +107,6 @@ export const secondaryListItems = (
       <ListItemText primary="Potraviny a nápoje" />
     </ListItemButton>
 
-    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
         <SportsSoccerIcon style={{color: "white"}}/>
@@ -123,14 +114,12 @@ export const secondaryListItems = (
       <ListItemText primary="Sport" />
     </ListItemButton>
 
-    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
         <MenuBookIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Knihy" />
     </ListItemButton>
-    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
 
   </React.Fragment>
 );
