@@ -117,11 +117,13 @@ export default function CreatePost() {
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="description"
+                  label="popis"
+                  name="description"
+                  autoComplete="description"
                   onChange={handleChange}
+              
+
                 />
               </Grid>
               <Grid item xs={12}>

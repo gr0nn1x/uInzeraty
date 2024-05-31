@@ -30,16 +30,16 @@ export const getPostById = async (req: Request, res: Response) => {
 };
 export const createPost = async (req: Request, res: Response) => {
   try {
-    const { email, postname, password, photo, category } = req.body;
-    if (!email || !password || !postname)
+    const { description, postname, password, photo, category } = req.body;
+    if (!description || !password || !postname)
       return res.status(400).send({ message: "Missing details!" });
-    const post: any = await Posting.findOne({ where: { email: email } });
+    const post: any = await Posting.findOne({ where: { description: description } });
     if (post) return res.status(400).send({ message: "Post already exists" });
     const salt = await genSalt(10);
     const hashedString = await hash(password, salt);
     const createdPost = await Posting.create({
       photo: "http://localhost:3000/img/" + req.file?.filename,
-      email: email,
+      description: description,
       postname: postname,
       category: category,
       password: hashedString,

@@ -26,7 +26,7 @@ export const getUploads = async () => {
   };
 };
 export type Post = {
-  email?: string;
+  description?: string;
   postname?: string;
   password?: string;
   photo?: string;

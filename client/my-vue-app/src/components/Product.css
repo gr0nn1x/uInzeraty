@@ -3,3 +3,7 @@
     width: 100%;
     color:black;
 }
+.delete-buton:hover {
+    font-size: 36px;
+    
+}
