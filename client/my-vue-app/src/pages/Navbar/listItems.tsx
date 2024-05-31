@@ -19,9 +19,11 @@ import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { Link } from "react-router-dom";
 
+
+
 export const mainListItems = (
   <React.Fragment>
-    <ListSubheader component="div" inset>
+    <ListSubheader component="div">
       Inzeráty
     </ListSubheader>
     <Link to="/">
@@ -53,7 +55,7 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <React.Fragment>
-    <ListSubheader component="div" inset>
+    <ListSubheader component="div">
       Kategorie
     </ListSubheader>
 
