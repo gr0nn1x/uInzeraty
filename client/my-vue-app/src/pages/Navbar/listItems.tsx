@@ -41,7 +41,7 @@ export const mainListItems = (
 );
 
 export const secondaryListItems = (
-  <React.Fragment >
+  <React.Fragment>
     <ListSubheader component="div" inset style={{color: "white", backgroundColor: "#8B0000"}}>
       Kategorie
     </ListSubheader>

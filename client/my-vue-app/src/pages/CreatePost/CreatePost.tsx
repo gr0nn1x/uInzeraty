@@ -43,7 +43,7 @@ export default function CreatePost() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Navbar title="Create Post" />
+      <Navbar title="Create Post"/>
       <Container
         component="main"
         maxWidth="xs"
