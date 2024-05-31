@@ -20,7 +20,6 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { Link } from "react-router-dom";
 
 
-
 export const mainListItems = (
   <React.Fragment>
     <ListSubheader component="div">
@@ -63,6 +62,7 @@ export const secondaryListItems = (
       <ListItemIcon>
         <ComputerIcon />
       </ListItemIcon>
+
       <ListItemText primary="Elektronika" />
     </ListItemButton>
 

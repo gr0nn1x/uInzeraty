@@ -13,6 +13,10 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Navbar from "../Navbar/Navbar";
 import "./CreatePost.css";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 export default function CreatePost() {
   const [info, setInfo] = useState();
@@ -20,8 +24,12 @@ export default function CreatePost() {
   const navigate = useNavigate();
   const imgRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+    SelectChangeEvent
+  ) => {
     event.preventDefault();
+
     const formDataToSend = new FormData();
     for (const [key, value] of Object.entries(formData)) {
       formDataToSend.append(key, value);
@@ -29,13 +37,12 @@ export default function CreatePost() {
     formDataToSend.append("photo", imgRef.current.files[0]);
     console.log(...formDataToSend);
     const post = await createPost(formDataToSend);
-
     if (post.status === 201) return navigate("/");
     if (post.status === 400) return setInfo(post.msg);
     if (post.status === 500) return navigate("/");
   };
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -85,6 +92,27 @@ export default function CreatePost() {
                   onChange={handleChange}
                 />
               </Grid>
+              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="category">kategorie</InputLabel>
+                <Select
+                  name="category"
+                  labelId="category"
+                  id="category"
+                  value={FormData.category}
+                  onChange={handleChange}
+                  label="category"
+                >
+                  <MenuItem value="undefined">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={"monitor"}>Monitor</MenuItem>
+                  <MenuItem value={"notebook"}>Notebook</MenuItem>
+                  <MenuItem value={"telefon"}>Telefon</MenuItem>
+                  <MenuItem value={"klavesnice"}>Klávesnice</MenuItem>
+                  <MenuItem value={"mys"}>Myš</MenuItem>
+                  <MenuItem value={"sluchatka"}>Sluchátka</MenuItem>
+                </Select>
+              </FormControl>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -113,6 +141,7 @@ export default function CreatePost() {
               <Grid item>
                 <input ref={imgRef} type="file" name="photo" id="photo" />
               </Grid>
+
               <Grid item></Grid>
             </Grid>
             <Button
