@@ -20,7 +20,7 @@ const Drawer = styled(MuiDrawer, {
     boxSizing: "border-box",
     overflowX: "hidden",
     height: "100vh",                                        // Set height to 100% of viewport height
-    background: "#D41A1A"                                   // Set backgoundColor of the navbar
+    background: "#2E2E2E"                                   // Set backgoundColor of the navbar
   },
 }));
 const Navbar: React.FC = () => {
@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <Drawer variant="permanent">
-        <div style={{ overflow: "auto", marginTop: 0, backgroundColor: "#D41A1A", color: "White" }}>
+        <div style={{ overflow: "auto", marginTop: 0, backgroundColor: "#2E2E2E", color: "White" }}>
           <a href="/">
             <img
               src="/logo.png"
@@ -36,10 +36,10 @@ const Navbar: React.FC = () => {
               style={{ margin: "20px auto", display: "block", maxWidth: "40%", cursor: "pointer"}}
             />
           </a>
-          <Divider />
+          <Divider style={{border: "solid, gray, 1px"}}/>
           <List component="nav">
             {mainListItems}
-            <Divider sx={{ my: 1 }} />
+            <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
             {secondaryListItems}
           </List>
         </div>

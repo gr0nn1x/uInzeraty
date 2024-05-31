@@ -1,20 +1,30 @@
-import * as React from 'react';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import Preview from '@mui/icons-material/Preview';
-import PostAdd from '@mui/icons-material/PostAdd';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import { Link } from 'react-router-dom';
+import * as React from "react";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import Preview from "@mui/icons-material/Preview";
+import PostAdd from "@mui/icons-material/PostAdd";
+import ComputerIcon from "@mui/icons-material/Computer";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import HomeIcon from "@mui/icons-material/Home";
+import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
+import ToysIcon from "@mui/icons-material/Toys";
+import PetsIcon from "@mui/icons-material/Pets";
+import FastfoodIcon from "@mui/icons-material/Fastfood";
+import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import { Link } from "react-router-dom";
+import Divider from "@mui/material/Divider";
 
 export const mainListItems = (
   <React.Fragment>
     <Link to="/" style={{color: "white"}}>
     <ListItemButton>
       <ListItemIcon>
-        <DashboardIcon />
+        <DashboardIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Inzeráty" />
     </ListItemButton>
@@ -23,7 +33,7 @@ export const mainListItems = (
     <Link to="/createpost" style={{color: "white"}}>
       <ListItemButton>
         <ListItemIcon>
-          <PostAdd />
+          <PostAdd style={{color: "white"}}/>
         </ListItemIcon>
         <ListItemText primary="Přidat inzerát" />
       </ListItemButton>
@@ -31,7 +41,7 @@ export const mainListItems = (
     <Link to="" style={{color: "white"}}>
       <ListItemButton>
         <ListItemIcon>
-          <Preview />
+          <Preview style={{color: "white"}}/>
         </ListItemIcon>
         <ListItemText primary="Moje inzeráty" />
       </ListItemButton>
@@ -42,79 +52,90 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <React.Fragment>
-    <ListSubheader component="div" inset style={{color: "white", backgroundColor: "#8B0000"}}>
-      <h2>Kategorie</h2>
+    <ListSubheader component="div" style={{color: "white", backgroundColor: "#2E2E2E"}}>
+      <h3>Kategorie</h3>
     </ListSubheader>
 
+    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <ComputerIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Elektronika" />
     </ListItemButton>
 
+    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <DirectionsCarIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Vozidla" />
     </ListItemButton>
 
+    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <SportsEsportsIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Gaming" />
     </ListItemButton>
 
+    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <HomeIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Domácnost" />
     </ListItemButton>
 
+    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <LocalPharmacyIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Drogérie" />
     </ListItemButton>
 
+    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <ToysIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Hračky" />
     </ListItemButton>
 
+    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <PetsIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Zvířata" />
     </ListItemButton>
 
+    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <FastfoodIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Potraviny a nápoje" />
     </ListItemButton>
 
+    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <SportsSoccerIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Sport" />
     </ListItemButton>
 
+    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <MenuBookIcon style={{color: "white"}}/>
       </ListItemIcon>
       <ListItemText primary="Knihy" />
     </ListItemButton>
+    <Divider sx={{ my: 1 }} style={{border: "solid, gray, 1px"}} />
 
   </React.Fragment>
 );
