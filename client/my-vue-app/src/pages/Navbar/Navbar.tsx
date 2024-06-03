@@ -6,7 +6,7 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import { mainListItems, secondaryListItems } from "./listItems";
 
-const drawerWidth: number = 240;
+const drawerWidth: number = 300;
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
