@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
           <a href="/">
             <img
               src="/stare.png"
-              alt="stare"
+              alt="logo"
               style={{ margin: "20px auto", display: "block", maxWidth: "40%", cursor: "pointer"}}
             />
           </a>
@@ -41,6 +41,7 @@ const Navbar: React.FC = () => {
             {mainListItems}
           <Divider sx={{ my: 1 }} style={{border: "solid, #3F3F3F, 3px"}} />
             {secondaryListItems}
+          <Divider style={{border: "solid, #3F3F3F, 3px"}} />
           </List>
         </div>
       </Drawer>
