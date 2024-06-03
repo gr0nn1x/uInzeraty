@@ -36,10 +36,10 @@ const Navbar: React.FC = () => {
               style={{ margin: "20px auto", display: "block", maxWidth: "40%", cursor: "pointer"}}
             />
           </a>
-          <Divider style={{border: "solid, #3F3F3F, 1px"}}/>
           <List component="nav">
+          <Divider style={{border: "solid, #3F3F3F, 3px"}}/> 
             {mainListItems}
-            <Divider sx={{ my: 1 }} style={{border: "solid, #3F3F3F, 1px"}} />
+          <Divider sx={{ my: 1 }} style={{border: "solid, #3F3F3F, 3px"}} />
             {secondaryListItems}
           </List>
         </div>

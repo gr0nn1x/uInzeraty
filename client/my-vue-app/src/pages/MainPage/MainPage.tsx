@@ -44,7 +44,7 @@ export default function Home() {
             <h1>Home page</h1>
             <p>Images not found</p>
             <Link to={"/createpost"}>
-            <p style={{ marginLeft: "300px", paddingLeft: "16px" }}>
+            <p style={{  }}>
               Upload new image
             </p>
           </Link>
@@ -75,7 +75,7 @@ export default function Home() {
                 <p>Loading</p>
               )}
           <Link to={"/createpost"}>
-            <p style={{ }}>
+            <p style={{  }}>
               Upload new image
             </p>
           </Link>
