@@ -4,6 +4,8 @@ import { getUploads } from "../../models/Post";
 import { useEffect, useState } from "react";
 import Product from "../../components/Product";
 import Navbar from "../Navbar/Navbar";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
 export default function Home() {
   const [uploads, setUploads] = useState();
@@ -28,13 +30,26 @@ export default function Home() {
     return (
       <>
         <Navbar title="Create Post" />
-        <h1>Home page</h1>
-        <p>Images not found</p>
-        <Link to={"/createpost"}>
-          <p style={{ marginLeft: "300px", paddingLeft: "16px" }}>
-            Upload new image
-          </p>
-        </Link>
+        <Container
+          component="main"
+          sx={{ marginLeft: "100%" }}
+        >
+          <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+          >
+            <h1>Home page</h1>
+            <p>Images not found</p>
+            <Link to={"/createpost"}>
+            <p style={{ marginLeft: "300px", paddingLeft: "16px" }}>
+              Upload new image
+            </p>
+          </Link>
+          </Box>
+        </Container>
       </>
     );
   }
@@ -42,17 +57,30 @@ export default function Home() {
   return (
     <>
       <Navbar title="Create Post" />
-      <h1>Home page</h1>
-      {isLoaded ? (
-        uploads.map((upload, index) => <Product key={index} {...upload} />)
-      ) : (
-        <p>Loading</p>
-      )}
-      <Link to={"/createpost"}>
-        <p style={{ marginLeft: "300px", paddingLeft: "16px" }}>
-          Upload new image
-        </p>
-      </Link>
+      <Container
+        component="main"
+        sx={{ marginLeft: "100%" }}
+      >
+        <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+        >
+          <h1>Home page</h1>
+          {isLoaded ? (
+            uploads.map((upload, index) => <Product key={index} {...upload} />)
+          ) : (
+                <p>Loading</p>
+              )}
+          <Link to={"/createpost"}>
+            <p style={{ }}>
+              Upload new image
+            </p>
+          </Link>
+        </Box>
+      </Container>
     </>
   );
 }
