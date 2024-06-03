@@ -31,8 +31,8 @@ const Navbar: React.FC = () => {
         <div style={{ overflow: "auto", marginTop: 0, backgroundColor: "#2E2E2E", color: "White" }}>
           <a href="/">
             <img
-              src="/logo.png"
-              alt="Logo"
+              src="/stare.png"
+              alt="stare"
               style={{ margin: "20px auto", display: "block", maxWidth: "40%", cursor: "pointer"}}
             />
           </a>
