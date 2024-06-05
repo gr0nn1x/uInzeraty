@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage/MainPage";
 import Post from "./Post/Post";
 import CreatePost from "./CreatePost/CreatePost";
-import Navbar from "./Navbar/Navbar";
 
 export default function AppRoutes() {
   return (
