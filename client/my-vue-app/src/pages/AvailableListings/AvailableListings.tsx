@@ -1,35 +1,76 @@
-import * as React from "react";
+// AvailableListings.tsx
 
-interface AvailableListingsProps {
-  category: string | null;
+import React from "react";
+import { Box, Typography, Card, CardMedia, CardContent, Button } from "@mui/material";
+
+interface Listing {
+  id: number;
+  title: string;
+  price: string;
+  imageUrl: string;
 }
 
-const AvailableListings: React.FC<AvailableListingsProps> = ({ category }) => {
-  const [listings, setListings] = React.useState<string[]>([]);
+interface AvailableListingsProps {
+  userListings: Listing[];
+  otherListings: Listing[];
+}
 
-  const listingsData: { [key: string]: string[] } = {
-    "Electronics": ["Laptop", "Smartphone", "Tablet"],
-    "Clothing": ["Shirt", "Pants", "Shoes"],
-    "Books": ["Fiction", "Non-fiction", "Children's"],
-  };
-
-  React.useEffect(() => {
-    if (category && listingsData[category]) {
-      setListings(listingsData[category]);
-    } else {
-      setListings([]);
-    }
-  }, [category]);
-
+const AvailableListings: React.FC<AvailableListingsProps> = ({ userListings, otherListings }) => {
   return (
-    <div>
-      <h3>Available Listings</h3>
-      <ul>
-        {listings.map(listing => (
-          <li key={listing}>{listing}</li>
+    <Box>
+      {/* User Listings Section */}
+      <Typography variant="h5" gutterBottom style={{ color: 'black' }}>
+        Moje inzeráty
+      </Typography>
+      <Box display="flex" flexWrap="wrap" gap={2}>
+        {userListings.map((listing) => (
+          <Card key={listing.id} sx={{ width: '250px' }}>
+            <CardMedia
+              component="img"
+              height="140"
+              image={listing.imageUrl}
+              alt={listing.title}
+            />
+            <CardContent>
+              <Typography variant="h6" component="div" style={{ color: 'black' }}>
+                {listing.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" style={{ color: 'black' }}>
+                {listing.price}
+              </Typography>
+            </CardContent>
+          </Card>
         ))}
-      </ul>
-    </div>
+      </Box>
+
+      {/* Other Listings Section */}
+      <Typography variant="h5" gutterBottom style={{ color: 'black' }}>
+        Inzeráty
+      </Typography>
+      <Box display="flex" flexWrap="wrap" gap={2}>
+        {otherListings.map((listing) => (
+          <Card key={listing.id} sx={{ width: '250px' }}>
+            <CardMedia
+              component="img"
+              height="140"
+              image={listing.imageUrl}
+              alt={listing.title}
+            />
+            <CardContent>
+              <Typography variant="h6" component="div" style={{ color: 'black' }}>
+                {listing.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" style={{ color: 'black' }}>
+                {listing.price}
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
+      <Box display="flex" justifyContent="center" mt={4}>
+        <Button variant="contained">Zobrazit více</Button>
+      </Box>
+    </Box>
   );
 };
 
