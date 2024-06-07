@@ -1,53 +1,24 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
-import { getUploads } from "../../models/Post";
-import { useEffect, useState } from "react";
-import Product from "../../components/Product";
 import Navbar from "../Navbar/Navbar";
+import CategoriesSidebar from "../CategoriesSidebar/CategoriesSidebar";
+import SpecificationsSidebar from "../SpecificationSidebar/SpecificationSidebar";
 
-export default function Home() {
-  const [uploads, setUploads] = useState();
-  const [isLoaded, setLoaded] = useState(false);
+const MainPage: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
 
-  const load = async () => {
-    const data = await getUploads();
-    console.log(data);
-    if (data.status === 200) {
-      setUploads(data.payload);
-      setLoaded(true);
-    } else {
-      setLoaded(null);
-    }
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
   };
 
-  useEffect(() => {
-    load();
-  }, []);
-
-  if (isLoaded === null) {
-    return (
-      <>
-        <h1>Home page</h1>
-        <p>Images not found</p>
-        <Link to={"/createpost"}>
-          <p>Upload new image</p>
-        </Link>
-      </>
-    );
-  }
-
   return (
-    <>
-      <Navbar title="Create Post" />
-      <h1>Home page</h1>
-      {isLoaded ? (
-        uploads.map((upload, index) => <Product key={index} {...upload} />)
-      ) : (
-        <p>Loading</p>
-      )}
-      <Link to={"/createpost"}>
-        <p>Upload new image</p>
-      </Link>
-    </>
+    <div>
+      <Navbar />
+      <div style={{ display: 'flex' }}>
+        <CategoriesSidebar onCategorySelect={handleCategorySelect} />
+        <SpecificationsSidebar category={selectedCategory} />
+      </div>
+    </div>
   );
-}
+};
+
+export default MainPage;
