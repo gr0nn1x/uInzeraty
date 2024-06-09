@@ -22,7 +22,6 @@ export default function CreatePost() {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
   const imgRef = useRef<HTMLInputElement>(null);
-  const [category, setCategory] = React.useState("");
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -42,9 +41,8 @@ export default function CreatePost() {
     if (post.status === 500) return navigate("/");
   };
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
   };
 
   const defaultTheme = createTheme();
@@ -94,16 +92,16 @@ export default function CreatePost() {
                 />
               </Grid>
               <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="category">KATEGORIE</InputLabel>
+                <InputLabel id="category">kategorie</InputLabel>
                 <Select
                   name="category"
                   labelId="category"
                   id="category"
-                  value={category}
+                  value={FormData.category}
                   onChange={handleChange}
                   label="category"
                 >
-                  <MenuItem value="">
+                  <MenuItem value="undefined">
                     <em>None</em>
                   </MenuItem>
                   <MenuItem value={"monitor"}>Monitor</MenuItem>
@@ -118,11 +116,13 @@ export default function CreatePost() {
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="description"
+                  label="popis"
+                  name="description"
+                  autoComplete="description"
                   onChange={handleChange}
+              
+
                 />
               </Grid>
               <Grid item xs={12}>
