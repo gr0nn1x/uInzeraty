@@ -8,11 +8,15 @@ module.exports = (sequelize: any, DataTypes: any) => {
         primaryKey: true,
         allowNull: false,
       },
-      email: {
+      description: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       postname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      category: {
         type: DataTypes.STRING,
         allowNull: false,
       },

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletePost = exports.updatePost = exports.createPost = exports.getPostById = exports.getAllPosts = void 0;
+exports.postUpload = exports.deletePost = exports.updatePost = exports.createPost = exports.getPostById = exports.getAllPosts = void 0;
 const bcrypt_1 = require("bcrypt");
 const index_1 = __importDefault(require("../models/index"));
 const Posting = index_1.default.posts;
@@ -40,7 +40,7 @@ const getPostById = async (req, res) => {
 exports.getPostById = getPostById;
 const createPost = async (req, res) => {
     try {
-        const { email, postname, password, photo } = req.body;
+        const { email, postname, password, photo, category } = req.body;
         if (!email || !password || !postname)
             return res.status(400).send({ message: "Missing details!" });
         const post = await Posting.findOne({ where: { email: email } });
@@ -49,9 +49,10 @@ const createPost = async (req, res) => {
         const salt = await (0, bcrypt_1.genSalt)(10);
         const hashedString = await (0, bcrypt_1.hash)(password, salt);
         const createdPost = await Posting.create({
-            photo: photo,
+            photo: "http://localhost:3000/img/" + req.file?.filename,
             email: email,
             postname: postname,
+            category: category,
             password: hashedString,
         });
         return res.status(201).send({ message: "Post created" });
@@ -113,27 +114,4 @@ const saveFileIntoFolder = (req, res, next) => {
         next();
     });
 };
-const saveIntoDb = async (req, res) => {
-    try {
-        const upload = new Post({
-            name: req.body.photo,
-            imagePath: `http://localhost:3000/api/v${process.env.API_VER}/img` +
-                req.body.postname,
-        });
-        const result = await upload.save();
-        if (result) {
-            return res.status(201).json({
-                msg: "Upload created!",
-                payload: result,
-            });
-        }
-        res.status(500).json({ msg: "Upload failed" });
-    }
-    catch (error) {
-        console.log(error);
-        res.status(500).json({
-            error,
-        });
-    }
-};
-exports.postUpload = [saveFileIntoFolder, saveIntoDb];
+exports.postUpload = [saveFileIntoFolder, exports.createPost];

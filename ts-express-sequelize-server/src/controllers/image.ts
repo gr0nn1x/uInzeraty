@@ -4,7 +4,7 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: function (req: Request, file: IFile, cb: CallableFunction) {
-    cb(null, path.join(__dirname, "../img"));
+    cb(null, path.join(__dirname, "../public/img"));
   },
   filename: function (req: Request, file: IFile, cb: CallableFunction) {
     cb(null, Date.now() + file.originalname);
@@ -12,6 +12,7 @@ const storage = multer.diskStorage({
 });
 
 const filter = (req: Request, file: IFile, cb: CallableFunction) => {
+  //TODO validace here a na klientovi
   file.mimetype === "image/jpeg" ||
   file.mimetype === "image/png" ||
   file.mimetype === "image/gif"
