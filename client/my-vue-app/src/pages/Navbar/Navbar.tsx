@@ -38,16 +38,8 @@ const Navbar: React.FC = () => {
           }}
         >
           <a href="/">
-            <img
-              src="/stare.png"
-              alt="logo"
-              style={{
-                margin: "20px auto",
-                display: "block",
-                maxWidth: "40%",
-                cursor: "pointer",
-              }}
-            />
+           
+          
           </a>
           <List component="nav">
             <Divider style={{ border: "solid, #3F3F3F, 3px" }} />
