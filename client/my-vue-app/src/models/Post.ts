@@ -25,6 +25,7 @@ export const getUploads = async () => {
     msg: data.msg,
   };
 };
+
 export type Post = {
   description?: string;
   postname?: string;

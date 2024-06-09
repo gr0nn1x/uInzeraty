@@ -55,8 +55,6 @@ export default function CreatePost() {
         maxWidth="xs"
         sx={{ marginLeft: "800px", paddingLeft: "16px" }}
       >
-        {" "}
-        {/* Add paddingLeft */}
         <CssBaseline />
         <Box
           sx={{
@@ -86,7 +84,7 @@ export default function CreatePost() {
                   required
                   fullWidth
                   id="postname"
-                  label="Post Name"
+                  label="název inzerátu"
                   autoFocus
                   onChange={handleChange}
                 />
@@ -99,7 +97,7 @@ export default function CreatePost() {
                   id="category"
                   value={FormData.category}
                   onChange={handleChange}
-                  label="category"
+                  label="kategorie"
                 >
                   <MenuItem value="undefined">
                     <em>None</em>
@@ -130,7 +128,7 @@ export default function CreatePost() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Heslo"
                   type="password"
                   id="password"
                   autoComplete="new-password"

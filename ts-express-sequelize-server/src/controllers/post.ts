@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { genSalt, hash } from "bcrypt";
+import { genSalt, hash, compare } from "bcrypt";
 import db from "../models/index";
 const Posting = db.posts;
 const Post = require("../models/post");
@@ -50,6 +50,31 @@ export const createPost = async (req: Request, res: Response) => {
     res.status(500).end();
   }
 };
+
+export const checkPassword = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { password } = req.body;
+
+    if (!id || !password) return res.status(400).send({ message: "Missing details!" });
+
+    const post: any = await Posting.findOne({ where: { id: id } });
+
+    if (!post) return res.status(500).send({ message: "Post not found" });
+
+    const match = await compare(password, post.password);
+
+    if (match) {
+      res.status(200).send({ match: true });
+    } else {
+      res.status(401).send({ match: false });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).end();
+  }
+};
+
 export const updatePost = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
