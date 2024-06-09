@@ -53,6 +53,7 @@ export default function Product(props) {
     <div
       className="product-container"
       style={{
+        border:"black, 5px, solid",
         backgroundColor: "grey  ",
         marginLeft: "300px",
         height: "700px",
