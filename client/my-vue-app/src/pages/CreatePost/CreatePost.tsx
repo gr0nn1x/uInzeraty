@@ -12,7 +12,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Navbar from "../Navbar/Navbar";
-import "./CreatePost.css";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -50,7 +49,7 @@ export default function CreatePost() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Navbar title="Create Post" />
+      <Navbar title="Create Post"/>
       <Container
         component="main"
         maxWidth="xs"
