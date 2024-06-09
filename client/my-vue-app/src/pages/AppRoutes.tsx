@@ -9,6 +9,7 @@ export default function AppRoutes() {
   return (
     <>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/post" element={<Post />}></Route>

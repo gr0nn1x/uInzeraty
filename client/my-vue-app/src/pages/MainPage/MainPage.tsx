@@ -20,7 +20,9 @@ export default function Home() {
     if (data.status === 200) {
       setUploads(data.payload);
       setLoaded(true);
-      const uniqueCategories = [...new Set(data.payload.map(post => post.category))];
+      const uniqueCategories = [
+        ...new Set(data.payload.map((post) => post.category)),
+      ];
       setCategories(uniqueCategories);
     } else {
       setLoaded(null);
@@ -36,15 +38,20 @@ export default function Home() {
   };
 
   const filteredUploads = selectedCategory
-    ? uploads.filter(upload => upload.category === selectedCategory)
+    ? uploads.filter((upload) => upload.category === selectedCategory)
     : uploads;
 
   if (isLoaded === null) {
     return (
       <>
-        <Navbar title="Create Post" />
         <Container component="main" sx={{ marginLeft: "100%" }}>
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <h1>Home page</h1>
             <p>Images not found</p>
             <Link to="/createpost">
@@ -58,12 +65,19 @@ export default function Home() {
 
   return (
     <>
-      <Navbar title="Create Post" />
       <Container component="main">
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <h1>Home page</h1>
-          <FormControl sx={{ minWidth: 120, marginBottom: 2,marginLeft:"80%" }}>
-            <InputLabel>Category</InputLabel>
+          <FormControl
+            sx={{ minWidth: 200, marginBottom: 2, marginLeft: "80%" }}
+          >
+            <InputLabel>Výběr Kategorie</InputLabel>
             <Select
               value={selectedCategory}
               onChange={handleCategoryChange}
@@ -79,7 +93,14 @@ export default function Home() {
               ))}
             </Select>
           </FormControl>
-          <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              gap: 2,
+            }}
+          >
             {isLoaded ? (
               filteredUploads.map((upload, index) => (
                 <Box key={index} sx={{ flex: "1 0 21%", margin: "1%" }}>
