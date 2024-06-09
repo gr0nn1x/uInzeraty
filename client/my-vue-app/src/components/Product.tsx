@@ -32,7 +32,6 @@ export default function Product(props) {
     const data = await res.json();
 
     if (res.status === 200 && data.match) {
-      // Password matches, delete the post
       const deleteRes = await fetch(
         `http://localhost:3000/api/v1/post/${props.id}`,
         {
@@ -41,7 +40,7 @@ export default function Product(props) {
       );
 
       if (deleteRes.status === 200) {
-        window.location.reload(); 
+        window.location.reload();
       } else {
         setError("Failed to delete the post.");
       }
@@ -54,13 +53,15 @@ export default function Product(props) {
     <div
       className="product-container"
       style={{
-        backgroundColor: "blue",
-        marginLeft: "70%",
+        backgroundColor: "grey  ",
+        marginLeft: "300px",
         height: "700px",
-        width: "500px",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        borderRadius:"40px"
+      
       }}
     >
       <img
@@ -72,6 +73,7 @@ export default function Product(props) {
           marginTop: "10%",
           height: "200px",
           objectFit: "cover",
+          borderRadius:"40px"
         }}
         className="article-img"
         src={props.photo}
@@ -79,10 +81,10 @@ export default function Product(props) {
         title={props.postname}
       />
       <div>
-        <p style={{ textAlign: "center", fontSize: "20px" }}>
+        <p style={{ textAlign: "center", fontSize: "40px" }}>
           {props.postname}
         </p>
-        <p style={{ color: "black" }}>{props.description}</p>
+        <p style={{ color: "black" ,marginLeft:"40px",marginRight:"40px"}}>{props.description}</p>
         <p style={{ color: "yellow", textAlign: "center" }}>
           Kategorie: {props.category}
         </p>
