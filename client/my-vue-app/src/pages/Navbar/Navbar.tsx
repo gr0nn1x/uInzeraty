@@ -38,8 +38,17 @@ const Navbar: React.FC = () => {
           }}
         >
           <a href="/">
-           
-          
+            <div
+              style={{
+                overflow: "auto",
+                margin: 100,
+                fontSize: "20px",
+                backgroundColor: "#2E2E2E",
+                color: "White",
+              }}
+            >
+              Rychlovka
+            </div>
           </a>
           <List component="nav">
             <Divider style={{ border: "solid, #3F3F3F, 3px" }} />

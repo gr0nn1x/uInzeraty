@@ -54,9 +54,7 @@ export default function Home() {
           >
             <h1>Home page</h1>
             <p>Images not found</p>
-            <Link to="/createpost">
-              <p>Upload new image</p>
-            </Link>
+           
           </Box>
         </Container>
       </>
