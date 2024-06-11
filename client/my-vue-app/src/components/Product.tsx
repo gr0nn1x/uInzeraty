@@ -53,51 +53,58 @@ export default function Product(props) {
     <div
       className="product-container"
       style={{
-        border:"black, 5px, solid",
-        backgroundColor: "grey  ",
+        position: "relative",
+        overflow: "hidden",
+        border: "5px solid black", // Border around the image
+        borderRadius: "40px",
+        width: "400px",
+        height: "500px",
+        backgroundColor: "grey",
         marginLeft: "300px",
-        height: "700px",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        borderRadius:"40px"
-      
       }}
     >
       <img
         style={{
-          display: "block",
-          marginLeft: "auto",
-          marginRight: "auto",
+          position: "absolute",
+          top: "0",
+          left: "0",
           width: "100%",
-          marginTop: "10%",
-          height: "200px",
+          height: "40%",
           objectFit: "cover",
-          borderRadius:"40px"
+          borderTopLeftRadius: "40px",
+          borderTopRightRadius: "40px",
         }}
         className="article-img"
         src={props.photo}
         alt={props.postname}
         title={props.postname}
       />
-      <div>
-        <p style={{ textAlign: "center", fontSize: "40px" }}>
-          {props.postname}
+      <div
+        style={{
+          position: "absolute",
+          top: "54%",
+          left: "20px",
+          width: "calc(100% - 40px)", // Adjusted width to accommodate padding
+          overflow: "hidden", // Prevent content from overflowing
+        }}
+      >
+        <p style={{ fontSize: "24px", fontWeight: "bold", maxWidth: "100%", overflowWrap: "break-word" }}>
+          {props.postname.length > 56 ? props.postname.substr(0, 56) : props.postname}
         </p>
-        <p style={{ color: "black" ,marginLeft:"40px",marginRight:"40px"}}>{props.description}</p>
-        <p style={{ color: "yellow", textAlign: "center" }}>
-          Kategorie: {props.category}
+        <p style={{ color: "black", maxWidth: "100%", overflowWrap: "break-word" }}>
+          {props.description}
         </p>
+        <p style={{ color: "yellow", maxWidth: "100%", overflowWrap: "break-word" }}>Kategorie: {props.category}</p>
       </div>
       <Box
         sx={{
           color: "red",
           fontSize: "30px",
           cursor: "pointer",
-          userSelect: "none",
-          transition: "0.2s ease",
-          alignSelf: "center",
+          position: "absolute",
+          top: "20px",
+          right: "20px",
+          zIndex: 1,
           "&:hover": {
             transform: "scale(1.6)",
           },
@@ -107,14 +114,13 @@ export default function Product(props) {
         X
       </Box>
       {isInputVisible && (
-        <>
+        <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
           <input
             type="password"
             style={{
               marginTop: 10,
               padding: 5,
               fontSize: "16px",
-              alignSelf: "center",
             }}
             placeholder="zadejte Heslo"
             value={password}
@@ -124,7 +130,7 @@ export default function Product(props) {
             Delete Post
           </button>
           {error && <p style={{ color: "red" }}>{error}</p>}
-        </>
+        </div>
       )}
     </div>
   );

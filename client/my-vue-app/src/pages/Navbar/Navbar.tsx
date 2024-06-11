@@ -1,104 +1,142 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import MuiDrawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import { mainListItems /* secondaryListItems */ } from "./listItems";
+import React from "react";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import { Link } from "react-router-dom";
+import ComputerIcon from "@mui/icons-material/Computer";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import HomeIcon from "@mui/icons-material/Home";
+import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
+import ToysIcon from "@mui/icons-material/Toys";
+import PetsIcon from "@mui/icons-material/Pets";
+import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import HistoryIcon from "@mui/icons-material/History";
+import EmojiNatureIcon from "@mui/icons-material/EmojiNature";
+import ClothesIcon from "@mui/icons-material/ShoppingBag";
+import ToolsIcon from "@mui/icons-material/Build";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import AddIcon from "@mui/icons-material/Add";
 
-const drawerWidth: number = 300;
+const categories = [
+  { icon: <ComputerIcon />, text: "Elektronika" },
+  { icon: <DirectionsCarIcon />, text: "Vozidla" },
+  { icon: <SportsEsportsIcon />, text: "Gaming" },
+  { icon: <HomeIcon />, text: "Domácnost" },
+  { icon: <LocalPharmacyIcon />, text: "Drogérie" },
+  { icon: <ToysIcon />, text: "Hračky" },
+  { icon: <PetsIcon />, text: "Zvířata" },
+  { icon: <SportsSoccerIcon />, text: "Sport" },
+  { icon: <MenuBookIcon />, text: "Knihy" },
+  { icon: <HistoryIcon />, text: "Historické" },
+  { icon: <EmojiNatureIcon />, text: "Zahrada" },
+  { icon: <ClothesIcon />, text: "Oblečení a obuv" },
+  { icon: <ToolsIcon />, text: "Nářadí" },
+];
 
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme }) => ({
-  "& .MuiDrawer-paper": {
-    position: "fixed", // Set position to fixed
-    top: 0, // Align to the top of the viewport
-    bottom: 0, // Align to the bottom of the viewport
+const sidebarStyle = {
+  borderRight: "1px solid #ccc",
+  padding: "1rem",
+  minWidth: "250px",
+  width: "250px",
+  backgroundColor: "#fff",
+  position: "fixed",
+  left: 0,
+  top: 0,
+  bottom: 0,
+  display: "flex",
+  flexDirection: "column",
+};
 
-    zIndex: theme.zIndex.drawer,
-    width: drawerWidth,
-    boxSizing: "border-box",
-    overflowX: "hidden",
-    height: "100vh", // Set height to 100% of viewport height
-    background: "#2E2E2E", // Set backgoundColor of the navbar
-  },
-}));
+const buttonStyle = {
+  display: "flex",
+  alignItems: "center",
+  width: "100%",
+  padding: "0.5rem",
+  textAlign: "left",
+  color: "#000",
+};
 
-const Navbar: React.FC = () => {
+const iconStyle = {
+  marginRight: "1rem",
+};
+
+const categoryStyle = {
+  flex: 1,
+  overflowY: "auto",
+};
+
+const inzeratyStyle = {
+  overflowY: "auto",
+};
+
+const logoStyle = {
+  textAlign: "center",
+  marginBottom: "1rem",
+};
+
+const separatorStyle = {
+  height: "1px",
+  backgroundColor: "#ccc",
+  margin: "0.5rem 0",
+};
+
+const logoImgStyle = {
+  maxWidth: "100%",
+  height: "auto",
+  display: "block",
+  margin: "0 auto",
+};
+
+const scrollbarStyle = `
+  ::-webkit-scrollbar {
+    width: 5px; /* Set the width of the scrollbar */
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Set the color of the scrollbar thumb */
+  }
+`;
+
+export default function Navbar({ currentPage, onCategorySelect }) {
   return (
-    <Box sx={{ display: "flex" }}>
-      <Drawer variant="permanent">
-        <div
-          style={{
-            overflow: "auto",
-            marginTop: 0,
-            backgroundColor: "#2E2E2E",
-            color: "White",
-          }}
-        >
-          <a href="/">
-            <div
-              style={{
-                overflow: "auto",
-                margin: 100,
-                fontSize: "20px",
-                backgroundColor: "#2E2E2E",
-                color: "White",
-              }}
-            >
-              Rychlovka
-            </div>
-          </a>
-          <List component="nav">
-            <Divider style={{ border: "solid, #3F3F3F, 3px" }} />
-            {mainListItems}
-            <Divider sx={{ my: 1 }} style={{ border: "solid, #3F3F3F, 3px" }} />
-            {/*   {secondaryListItems} */}
-            <Divider style={{ border: "solid, #3F3F3F, 3px" }} />
-          </List>
-        </div>
-      </Drawer>
-    </Box>
-  );
-};
-
-const logoStyle: React.CSSProperties = {
-  fontSize: '1.5rem',
-  fontWeight: 'bold',
-  color: '#000',
-  textDecoration: 'none',
-};
-
-const categoriesStyle: React.CSSProperties = {
-  display: 'flex',
-  gap: '1rem',
-};
-
-const categoryLinkStyle: React.CSSProperties = {
-  color: '#000',
-  textDecoration: 'none',
-};
-
-const loginStyle: React.CSSProperties = {
-  color: '#007bff',
-  textDecoration: 'none',
-};
-
-export default function Navbar() {
-  return (
-    <nav style={navbarStyle}>
-      <div>
-        <Link to="/" style={logoStyle}>Bazaar</Link>
+    <div style={sidebarStyle}>
+      <style>{scrollbarStyle}</style>
+      <div style={logoStyle}>
+        <img src="/logo.png" alt="Logo" style={logoImgStyle} />
       </div>
-      <div style={categoriesStyle}>
-        <Link to="/category1" style={categoryLinkStyle}>Inzeráty</Link>
-        <Link to="/category2" style={categoryLinkStyle}>Vytvořit inzerát</Link>
-        <Link to="/category3" style={categoryLinkStyle}>O nás</Link>
+      <div style={separatorStyle}></div>
+      <div style={inzeratyStyle}>
+        <Link to="/">
+          <ListItemButton onClick={() => onCategorySelect("")} style={buttonStyle}>
+            <ListItemIcon style={iconStyle}><ListAltIcon /></ListItemIcon>
+            <ListItemText primary="Všechny inzeráty" />
+          </ListItemButton>
+        </Link>
+        {currentPage === "main" && (
+          <Link to="/createpost">
+            <ListItemButton style={buttonStyle}>
+              <ListItemIcon style={iconStyle}><AddIcon /></ListItemIcon>
+              <ListItemText primary="Vytvořit inzerát" />
+            </ListItemButton>
+          </Link>
+        )}
       </div>
-      <div>
-        <Link to="/login" style={loginStyle}>Login</Link>
+      <div style={separatorStyle}></div>
+      <div style={categoryStyle}>
+        {currentPage === "main" && (
+          <ul style={{ listStyle: "none", padding: 0 }}>
+            {categories.map(({ icon, text }, index) => (
+              <li key={index}>
+                <ListItemButton onClick={() => onCategorySelect(text)} style={buttonStyle}>
+                  <ListItemIcon style={iconStyle}>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-    </nav>
+    </div>
   );
 }
