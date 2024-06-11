@@ -9,8 +9,11 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Navbar from "../Navbar/Navbar";
-import "./CreatePost.css";
 
 export default function CreatePost() {
   const [info, setInfo] = useState();
@@ -20,14 +23,16 @@ export default function CreatePost() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const formDataToSend = new FormData();
     for (const [key, value] of Object.entries(formData)) {
       formDataToSend.append(key, value);
     }
-    formDataToSend.append("photo", imgRef.current.files[0]);
+    if (imgRef.current && imgRef.current.files.length > 0) {
+      formDataToSend.append("photo", imgRef.current.files[0]);
+    }
     console.log(...formDataToSend);
     const post = await createPost(formDataToSend);
-
     if (post.status === 201) return navigate("/");
     if (post.status === 400) return setInfo(post.msg);
     if (post.status === 500) return navigate("/");
@@ -41,131 +46,116 @@ export default function CreatePost() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Navbar title="Create Post" /> {/* Add Navbar component */}
-      <Container component="main" sx={{ marginLeft: '250px' }}> {/* Add paddingLeft */}
-        <CssBaseline />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Typography component="h1" variant="h5">
-            Nový inzerát
-          </Typography>
+      <div style={{ display: "flex" }}>
+        <Navbar currentPage="createPost" />
+        <Container component="main" maxWidth="xs" sx={{ marginLeft: "500px" }}>
+          <CssBaseline />
           <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3, width: '100%' }} // Adjust width to 100%
-          >
-            <Box
             sx={{
+              marginTop: 8,
               display: "flex",
-              flexDirection: "row",
-              alignItems: "left",
+              flexDirection: "column",
+              alignItems: "center",
             }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Create Post
+            </Typography>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ mt: 3, width: "100%" }}
             >
-            <Box>
-              <Grid container justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo"/>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="given-name"
+                    name="postname"
+                    required
+                    fullWidth
+                    id="postname"
+                    label="název inzerátu"
+                    autoFocus
+                    onChange={handleChange}
+                    inputProps={{ maxLength: 56 }} // Limit the input to 56 characters
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                    <InputLabel id="category">kategorie</InputLabel>
+                    <Select
+                      name="category"
+                      labelId="category"
+                      id="category"
+                      value={formData.category || ""}
+                      onChange={handleChange}
+                      label="kategorie"
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value="Elektronika">Elektronika</MenuItem>
+                      <MenuItem value="Vozidla">Vozidla</MenuItem>
+                      <MenuItem value="Gaming">Gaming</MenuItem>
+                      <MenuItem value="Domácnost">Domácnost</MenuItem>
+                      <MenuItem value="Drogérie">Drogérie</MenuItem>
+                      <MenuItem value="Hračky">Hračky</MenuItem>
+                      <MenuItem value="Zvířata">Zvířata</MenuItem>
+                      <MenuItem value="Sport">Sport</MenuItem>
+                      <MenuItem value="Knihy">Knihy</MenuItem>
+                      <MenuItem value="Historické">Historické</MenuItem>
+                      <MenuItem value="Zahrada">Zahrada</MenuItem>
+                      <MenuItem value="Oblečení a obuv">Oblečení a obuv</MenuItem>
+                      <MenuItem value="Nářadí">Nářadí</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="description"
+                    label="popis"
+                    name="description"
+                    autoComplete="description"
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Heslo"
+                    type="password"
+                    id="password"
+                    autoComplete="new-password"
+                    onChange={handleChange}
+                  />
                 </Grid>
               </Grid>
-
-              <Grid container>
-                <Grid xs justifyContent="center"> {/* Center the grid container */}
-                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                    <TextField type="file" name="photo" id="photo" />
-                  </Grid>
-                </Grid>
-                <Grid xs justifyContent="center"> {/* Center the grid container */}
-                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                    <TextField type="file" name="photo" id="photo" />
-                  </Grid>
-                </Grid>
-                <Grid xs justifyContent="center"> {/* Center the grid container */}
-                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                    <TextField type="file" name="photo" id="photo" />
-                  </Grid>
-                </Grid>
-                <Grid xs justifyContent="center"> {/* Center the grid container */}
-                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                    <TextField type="file" name="photo" id="photo" />
-                  </Grid>
+              <Grid container justifyContent="center">
+                <Grid item>
+                  <input ref={imgRef} type="file" name="photo" id="photo" />
                 </Grid>
               </Grid>
-            </Box>
-            </Box>
-
-            <Grid container spacing={0}>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="name"                     // předělat
-                  label="Jméno"
-                  type="name"                     // předělat
-                  id="name"                       // předělat
-                  autoComplete="given-name"       // předělat
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="phone"                   // předělat
-                  label="Telefon"
-                  type="phone"                   // předělat
-                  id="phone"                     // předělat
-                  autoComplete="given-phone"     // předělat
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="address"                   // předělat
-                  label="Adresa"
-                  type="address"                   // předělat
-                  id="address"                     // předělat
-                  autoComplete="given-address"     // předělat
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="price"                   // předělat
-                  label="Cena"
-                  type="price"                   // předělat
-                  id="price"                     // předělat
-                />
-              </Grid>
-            </Grid>
-            <Grid container xs={"auto"}>
-              <TextField
-                required
+              <Button
+                type="submit"
                 fullWidth
-                name="desc"                     // předělat
-                label="Popis"
-                type="desc"                     // předělat
-                id="desc"                       // předělat
-              />
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Zaslat inzerát
-            </Button>
-            <p>{info}</p>
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Create Posts
+              </Button>
+              <p>{info}</p>
+            </Box>
           </Box>
-        </Box>
-      </Container>
+        </Container>
+      </div>
     </ThemeProvider>
   );
 }

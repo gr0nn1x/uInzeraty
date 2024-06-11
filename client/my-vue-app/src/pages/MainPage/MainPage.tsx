@@ -1,17 +1,18 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { getUploads } from "../../models/Post";
 import { useEffect, useState } from "react";
 import Product from "../../components/Product";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import Navbar from "../Navbar/Navbar";
 
 export default function Home() {
-  const [uploads, setUploads] = useState();
+  const [uploads, setUploads] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const load = async () => {
     const data = await getUploads();
-    console.log(data);
     if (data.status === 200) {
       setUploads(data.payload);
       setLoaded(true);
@@ -24,30 +25,82 @@ export default function Home() {
     load();
   }, []);
 
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const filteredUploads = selectedCategory
+    ? uploads.filter((upload) => upload.category === selectedCategory)
+    : uploads;
+
   if (isLoaded === null) {
     return (
-      <>
-        <h1>Home page</h1>
-        <p>Images not found</p>
-        <Link to={"/createpost"}>
-          <p>Upload new image</p>
-        </Link>
-      </>
+      <Container component="main" sx={{ marginLeft: "500px" }}>
+        <Navbar currentPage="main" />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            color: "black",
+          }}
+        >
+          <p>Nebyly nalezeny žádné inzeráty. Co takhle jeden vytvořit?</p>
+        </Box>
+      </Container>
     );
   }
 
   return (
     <>
-      <Navbar title="Create Post" />
-      <h1>Home page</h1>
-      {isLoaded ? (
-        uploads.map((upload, index) => <Product key={index} {...upload} />)
-      ) : (
-        <p>Loading</p>
-      )}
-      <Link to={"/createpost"}>
-        <p>Upload new image</p>
-      </Link>
+      <Container component="main">
+        <Navbar currentPage="main" onCategorySelect={handleCategorySelect} />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {filteredUploads.length === 0 ? (
+            <p
+              style={{
+                textAlign: "center",
+                color: "black",
+                marginLeft: "600px",
+              }}
+            >
+              V této kategorii nejsou žádné inzeráty.
+            </p>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-end",
+                padding: "1rem",
+              }}
+            >
+              {filteredUploads.map((upload, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    marginLeft: "auto",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  <Product
+                    {...upload}
+                    sx={{
+                      paddingLeft: "0",
+                    }}
+                  />
+                </Box>
+              ))}
+            </Box>
+          )}
+        </Box>
+      </Container>
     </>
   );
 }
