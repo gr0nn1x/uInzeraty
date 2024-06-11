@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postUpload = exports.deletePost = exports.updatePost = exports.createPost = exports.getPostById = exports.getAllPosts = void 0;
+exports.postUpload = exports.deletePost = exports.updatePost = exports.checkPassword = exports.createPost = exports.getPostById = exports.getAllPosts = void 0;
 const bcrypt_1 = require("bcrypt");
 const index_1 = __importDefault(require("../models/index"));
 const Posting = index_1.default.posts;
@@ -40,17 +40,17 @@ const getPostById = async (req, res) => {
 exports.getPostById = getPostById;
 const createPost = async (req, res) => {
     try {
-        const { email, postname, password, photo, category } = req.body;
-        if (!email || !password || !postname)
+        const { description, postname, password, photo, category } = req.body;
+        if (!description || !password || !postname)
             return res.status(400).send({ message: "Missing details!" });
-        const post = await Posting.findOne({ where: { email: email } });
+        const post = await Posting.findOne({ where: { description: description } });
         if (post)
             return res.status(400).send({ message: "Post already exists" });
         const salt = await (0, bcrypt_1.genSalt)(10);
         const hashedString = await (0, bcrypt_1.hash)(password, salt);
         const createdPost = await Posting.create({
             photo: "http://localhost:3000/img/" + req.file?.filename,
-            email: email,
+            description: description,
             postname: postname,
             category: category,
             password: hashedString,
@@ -63,6 +63,29 @@ const createPost = async (req, res) => {
     }
 };
 exports.createPost = createPost;
+const checkPassword = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { password } = req.body;
+        if (!id || !password)
+            return res.status(400).send({ message: "Missing details!" });
+        const post = await Posting.findOne({ where: { id: id } });
+        if (!post)
+            return res.status(500).send({ message: "Post not found" });
+        const match = await (0, bcrypt_1.compare)(password, post.password);
+        if (match) {
+            res.status(200).send({ match: true });
+        }
+        else {
+            res.status(401).send({ match: false });
+        }
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).end();
+    }
+};
+exports.checkPassword = checkPassword;
 const updatePost = async (req, res) => {
     try {
         const { id } = req.params;

@@ -18,6 +18,7 @@ node_modules/.bin/ts-script
 node_modules/.bin/tsc
 node_modules/.bin/tsserver
 node_modules/.bin/uuid
+/build
 node_modules/@cspotcode/source-map-support/browser-source-map-support.js
 node_modules/@cspotcode/source-map-support/LICENSE.md
 node_modules/@cspotcode/source-map-support/package.json

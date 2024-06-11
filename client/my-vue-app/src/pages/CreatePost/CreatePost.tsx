@@ -80,10 +80,10 @@ export default function CreatePost() {
                     required
                     fullWidth
                     id="postname"
-                    label="název inzerátu"
+                    label="Název inzerátu"
                     autoFocus
                     onChange={handleChange}
-                    inputProps={{ maxLength: 56 }} // Limit the input to 56 characters
+                    inputProps={{ maxLength: 56 }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -121,7 +121,7 @@ export default function CreatePost() {
                     required
                     fullWidth
                     id="description"
-                    label="popis"
+                    label="Popis"
                     name="description"
                     autoComplete="description"
                     onChange={handleChange}
