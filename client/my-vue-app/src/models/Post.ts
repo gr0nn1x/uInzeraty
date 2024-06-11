@@ -25,8 +25,9 @@ export const getUploads = async () => {
     msg: data.msg,
   };
 };
+
 export type Post = {
-  email?: string;
+  description?: string;
   postname?: string;
   password?: string;
   photo?: string;

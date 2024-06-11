@@ -12,7 +12,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Navbar from "../Navbar/Navbar";
-import "./CreatePost.css";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -50,14 +49,12 @@ export default function CreatePost() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Navbar title="Create Post" />
+      <Navbar title="Create Post"/>
       <Container
         component="main"
         maxWidth="xs"
         sx={{ marginLeft: "800px", paddingLeft: "16px" }}
       >
-        {" "}
-        {/* Add paddingLeft */}
         <CssBaseline />
         <Box
           sx={{
@@ -87,7 +84,7 @@ export default function CreatePost() {
                   required
                   fullWidth
                   id="postname"
-                  label="Post Name"
+                  label="název inzerátu"
                   autoFocus
                   onChange={handleChange}
                 />
@@ -100,7 +97,7 @@ export default function CreatePost() {
                   id="category"
                   value={FormData.category}
                   onChange={handleChange}
-                  label="category"
+                  label="kategorie"
                 >
                   <MenuItem value="undefined">
                     <em>None</em>
@@ -117,11 +114,13 @@ export default function CreatePost() {
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="description"
+                  label="popis"
+                  name="description"
+                  autoComplete="description"
                   onChange={handleChange}
+              
+
                 />
               </Grid>
               <Grid item xs={12}>
@@ -129,7 +128,7 @@ export default function CreatePost() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Heslo"
                   type="password"
                   id="password"
                   autoComplete="new-password"

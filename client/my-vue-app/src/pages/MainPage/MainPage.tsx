@@ -2,50 +2,56 @@
 
 import * as React from "react";
 import Navbar from "../Navbar/Navbar";
-import CategoriesSidebar from "../CategoriesSidebar/CategoriesSidebar";
-import SpecificationsSidebar from "../SpecificationSidebar/SpecificationSidebar";
-import AvailableListings from "../AvailableListings/AvailableListings";
 
-const MainPage: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
+export default function Home() {
+  const [uploads, setUploads] = useState();
+  const [isLoaded, setLoaded] = useState(false);
 
-  const handleCategorySelect = (category: string) => {
-    setSelectedCategory(category);
+  const load = async () => {
+    const data = await getUploads();
+    console.log(data);
+    if (data.status === 200) {
+      setUploads(data.payload);
+      setLoaded(true);
+    } else {
+      setLoaded(null);
+    }
   };
 
-  const userListings = [
-    { id: 1, title: "Můj telefon", price: "5000 Kč", imageUrl: "https://via.placeholder.com/150" },
-    { id: 2, title: "Můj notebook", price: "15000 Kč", imageUrl: "https://via.placeholder.com/150" },
-    { id: 2, title: "Můj notebook", price: "15000 Kč", imageUrl: "https://via.placeholder.com/150" },
-    { id: 2, title: "Můj notebook", price: "15000 Kč", imageUrl: "https://via.placeholder.com/150" },
-    { id: 2, title: "Můj notebook", price: "15000 Kč", imageUrl: "https://via.placeholder.com/150" },
-    { id: 2, title: "Můj notebook", price: "15000 Kč", imageUrl: "https://via.placeholder.com/150" },
-    { id: 2, title: "Můj notebook", price: "15000 Kč", imageUrl: "https://via.placeholder.com/150" },
-    { id: 2, title: "Můj notebook", price: "15000 Kč", imageUrl: "https://via.placeholder.com/150" },
-    { id: 2, title: "Můj notebook", price: "15000 Kč", imageUrl: "https://via.placeholder.com/150" },
-  ];
+  useEffect(() => {
+    load();
+  }, []);
 
-  const otherListings = [
-    { id: 3, title: "Telefon", price: "3000 Kč", imageUrl: "https://via.placeholder.com/150" },
-    { id: 4, title: "Tablet", price: "4000 Kč", imageUrl: "https://via.placeholder.com/150" },
-    { id: 5, title: "Počítač", price: "20000 Kč", imageUrl: "https://via.placeholder.com/150" },
-  ];
+  if (isLoaded === null) {
+    return (
+      <>
+        <Navbar title="Create Post" />
+        <h1>Home page</h1>
+        <p>Images not found</p>
+        <Link to={"/createpost"}>
+          <p style={{ marginLeft: "300px", paddingLeft: "16px" }}>
+            Upload new image
+          </p>
+        </Link>
+      </>
+    );
+  }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <Navbar />
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden', marginTop: '64px' }}> {/* Adjusted marginTop for Navbar height */}
-        <div style={{ width: '250px', minWidth: '200px', overflowY: 'auto' }}>
-          <CategoriesSidebar onCategorySelect={handleCategorySelect} />
-        </div>
-        <div style={{ flex: 1, overflowY: 'auto', width: '56%', display: 'flex', flexDirection: 'column', }}>
-          <AvailableListings userListings={userListings} otherListings={otherListings} />
-        </div>
-        <div style={{ width: '200px', minWidth: '200px', overflowY: 'auto' }}>
-          <SpecificationsSidebar category={selectedCategory} />
-          </div>
-      </div>
-    </div>
+    <>
+      <Navbar title="Create Post" />
+      <h1>Home page</h1>
+      {isLoaded ? (
+        uploads.map((upload, index) => <Product key={index} {...upload} />)
+      ) : (
+        <p>Loading</p>
+      )}
+      <Link to={"/createpost"}>
+        <p style={{ marginLeft: "300px", paddingLeft: "16px" }}>
+          Upload new image
+        </p>
+      </Link>
+    </>
   );
 };
 
