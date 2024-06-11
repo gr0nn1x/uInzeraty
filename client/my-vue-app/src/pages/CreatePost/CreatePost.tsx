@@ -11,9 +11,11 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Navbar from "../Navbar/Navbar";
+import { Avatar } from "@mui/material";
 
 export default function CreatePost() {
   const [info, setInfo] = useState();
@@ -47,7 +49,7 @@ export default function CreatePost() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <div style={{ display: "flex" }}>
-        <Navbar currentPage="createPost" />
+        <Navbar currentPage="createPost"/>
         <Container component="main" maxWidth="xs" sx={{ marginLeft: "500px" }}>
           <CssBaseline />
           <Box
