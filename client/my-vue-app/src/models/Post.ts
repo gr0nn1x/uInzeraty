@@ -31,6 +31,8 @@ export type Post = {
   postname?: string;
   password?: string;
   photo?: string;
+  price?: string;
+  contact?: string;
   createdAt?: string;
   updatedAt?: string;
 };

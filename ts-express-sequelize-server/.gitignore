@@ -19,6 +19,9 @@ node_modules/.bin/tsc
 node_modules/.bin/tsserver
 node_modules/.bin/uuid
 /build
+\build
+ts-express-sequelize-server\build
+ts-express-sequelize-server/build
 node_modules/@cspotcode/source-map-support/browser-source-map-support.js
 node_modules/@cspotcode/source-map-support/LICENSE.md
 node_modules/@cspotcode/source-map-support/package.json

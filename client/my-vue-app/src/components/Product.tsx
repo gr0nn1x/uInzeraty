@@ -55,7 +55,7 @@ export default function Product(props) {
       style={{
         position: "relative",
         overflow: "hidden",
-        border: "5px solid black", // Border around the image
+        border: "5px solid black", 
         borderRadius: "40px",
         width: "400px",
         height: "500px",
@@ -84,8 +84,8 @@ export default function Product(props) {
           position: "absolute",
           top: "54%",
           left: "20px",
-          width: "calc(100% - 40px)", // Adjusted width to accommodate padding
-          overflow: "hidden", // Prevent content from overflowing
+          width: "calc(100% - 40px)", 
+          overflow: "hidden", 
         }}
       >
         <p style={{ fontSize: "24px", fontWeight: "bold", maxWidth: "100%", overflowWrap: "break-word" }}>
@@ -93,6 +93,12 @@ export default function Product(props) {
         </p>
         <p style={{ color: "black", maxWidth: "100%", overflowWrap: "break-word" }}>
           {props.description}
+        </p>
+        <p style={{ color: "blue", maxWidth: "100%", overflowWrap: "break-word" }}>
+          {props.price}
+        </p>
+        <p style={{ color: "yellow", maxWidth: "100%", overflowWrap: "break-word" }}>
+          {props.contact}
         </p>
         <p style={{ color: "yellow", maxWidth: "100%", overflowWrap: "break-word" }}>Kategorie: {props.category}</p>
       </div>

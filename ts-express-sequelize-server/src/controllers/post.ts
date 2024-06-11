@@ -30,8 +30,8 @@ export const getPostById = async (req: Request, res: Response) => {
 };
 export const createPost = async (req: Request, res: Response) => {
   try {
-    const { description, postname, password, photo, category } = req.body;
-    if (!description || !password || !postname)
+    const { description, postname, password, photo, category, price, contact } = req.body;
+    if (!description || !password || !postname || !category || !price || !contact || !photo)
       return res.status(400).send({ message: "Missing details!" });
     const post: any = await Posting.findOne({ where: { description: description } });
     if (post) return res.status(400).send({ message: "Post already exists" });
@@ -43,6 +43,8 @@ export const createPost = async (req: Request, res: Response) => {
       postname: postname,
       category: category,
       password: hashedString,
+      price: price,
+      contact: contact,
     });
     return res.status(201).send({ message: "Post created" });
   } catch (err) {

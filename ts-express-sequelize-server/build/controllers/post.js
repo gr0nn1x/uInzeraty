@@ -40,8 +40,8 @@ const getPostById = async (req, res) => {
 exports.getPostById = getPostById;
 const createPost = async (req, res) => {
     try {
-        const { description, postname, password, photo, category } = req.body;
-        if (!description || !password || !postname)
+        const { description, postname, password, photo, category, price, contact } = req.body;
+        if (!description || !password || !postname || !category || !price || !contact || !photo)
             return res.status(400).send({ message: "Missing details!" });
         const post = await Posting.findOne({ where: { description: description } });
         if (post)
@@ -54,6 +54,8 @@ const createPost = async (req, res) => {
             postname: postname,
             category: category,
             password: hashedString,
+            price: price,
+            contact: contact,
         });
         return res.status(201).send({ message: "Post created" });
     }
