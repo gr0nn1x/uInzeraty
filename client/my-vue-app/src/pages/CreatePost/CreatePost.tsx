@@ -1,31 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
 import React, { useRef, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
@@ -202,4 +174,4 @@ export default function CreatePost() {
       </div>
     </ThemeProvider>
   );
-}*/
+}
