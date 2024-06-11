@@ -34,4 +34,5 @@ router.get("/:id", postController.getPostById);
 router.post("/", postController.postUpload);
 router.put("/:id", postController.updatePost);
 router.delete("/:id", postController.deletePost);
+router.post("/:id/checkPassword", postController.checkPassword);
 module.exports = router;

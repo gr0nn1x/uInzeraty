@@ -88,12 +88,6 @@ export default function CreatePost() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Create Post
-            </Typography>
             <Box
               component="form"
               noValidate
@@ -108,50 +102,40 @@ export default function CreatePost() {
                     required
                     fullWidth
                     id="postname"
-                    label="název inzerátu"
+                    label="Název"
                     autoFocus
                     onChange={handleChange}
-                    inputProps={{ maxLength: 56 }} // Limit the input to 56 characters
+                    inputProps={{ maxLength: 56 }}
                   />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                    <InputLabel id="category">kategorie</InputLabel>
-                    <Select
-                      name="category"
-                      labelId="category"
-                      id="category"
-                      value={formData.category || ""}
-                      onChange={handleChange}
-                      label="kategorie"
-                    >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
-                      <MenuItem value="Elektronika">Elektronika</MenuItem>
-                      <MenuItem value="Vozidla">Vozidla</MenuItem>
-                      <MenuItem value="Gaming">Gaming</MenuItem>
-                      <MenuItem value="Domácnost">Domácnost</MenuItem>
-                      <MenuItem value="Drogérie">Drogérie</MenuItem>
-                      <MenuItem value="Hračky">Hračky</MenuItem>
-                      <MenuItem value="Zvířata">Zvířata</MenuItem>
-                      <MenuItem value="Sport">Sport</MenuItem>
-                      <MenuItem value="Knihy">Knihy</MenuItem>
-                      <MenuItem value="Historické">Historické</MenuItem>
-                      <MenuItem value="Zahrada">Zahrada</MenuItem>
-                      <MenuItem value="Oblečení a obuv">Oblečení a obuv</MenuItem>
-                      <MenuItem value="Nářadí">Nářadí</MenuItem>
-                    </Select>
-                  </FormControl>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
                     fullWidth
                     id="description"
-                    label="popis"
+                    label="Popis"
                     name="description"
                     autoComplete="description"
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="price"
+                    label="Cena"
+                    id="price"
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="contact"
+                    label="Kontakt"
+                    id="contact"
                     onChange={handleChange}
                   />
                 </Grid>
@@ -168,7 +152,37 @@ export default function CreatePost() {
                   />
                 </Grid>
               </Grid>
-              <Grid container justifyContent="center">
+              <Grid item xs={12}>
+                <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="category">Kategorie</InputLabel>
+                  <Select
+                    name="category"
+                    labelId="category"
+                    id="category"
+                    value={formData.category || ""}
+                    onChange={handleChange}
+                    label="kategorie"
+                  >
+                    <MenuItem value="">
+                      <em>Žádná</em>
+                    </MenuItem>
+                    <MenuItem value="Elektronika">Elektronika</MenuItem>
+                    <MenuItem value="Vozidla">Vozidla</MenuItem>
+                    <MenuItem value="Gaming">Gaming</MenuItem>
+                    <MenuItem value="Domácnost">Domácnost</MenuItem>
+                    <MenuItem value="Drogérie">Drogérie</MenuItem>
+                    <MenuItem value="Hračky">Hračky</MenuItem>
+                    <MenuItem value="Zvířata">Zvířata</MenuItem>
+                    <MenuItem value="Sport">Sport</MenuItem>
+                    <MenuItem value="Knihy">Knihy</MenuItem>
+                    <MenuItem value="Historické">Historické</MenuItem>
+                    <MenuItem value="Zahrada">Zahrada</MenuItem>
+                    <MenuItem value="Oblečení a obuv">Oblečení a obuv</MenuItem>
+                    <MenuItem value="Nářadí">Nářadí</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid container justifyContent="right">
                 <Grid item>
                   <input ref={imgRef} type="file" name="photo" id="photo" />
                 </Grid>
