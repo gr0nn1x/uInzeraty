@@ -151,7 +151,7 @@ export default function CreatePost() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Create Post
+                Create Posts
               </Button>
               <p>{info}</p>
             </Box>
