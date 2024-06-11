@@ -41,7 +41,7 @@ export default function CreatePost() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Navbar title="Create Post" /> {/* Add Navbar component */}
-      <Container component="main" sx={{ marginLeft: '25%' }}> {/* Add paddingLeft */}
+      <Container component="main" sx={{ marginLeft: '40%' }}> {/* Add paddingLeft */}
         <CssBaseline />
         <Box
           sx={{
@@ -59,6 +59,17 @@ export default function CreatePost() {
             onSubmit={handleSubmit}
             sx={{ mt: 3, width: '100%' }} // Adjust width to 100%
           >
+            <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="postname"                     // předělat
+                  label="Název inzerátu"
+                  type="postname"                     // předělat
+                  id="postname"                       // předělat
+                  autoComplete="given-postname"       // předělat
+                />
+              </Grid>
             <Box
             sx={{
               display: "flex",
@@ -66,36 +77,13 @@ export default function CreatePost() {
               alignItems: "left",
             }}
             >
-            <Box>
-              <Grid container justifyContent="center"> {/* Center the grid container */}
-                <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                  <TextField type="file" name="photo" id="photo"/>
-                </Grid>
-              </Grid>
-
-              <Grid container>
-                <Grid xs justifyContent="center"> {/* Center the grid container */}
+              <Box>
+                <Grid container justifyContent="center"> {/* Center the grid container */}
                   <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                    <TextField type="file" name="photo" id="photo" />
+                    <TextField type="file" name="photo" id="photo"/>
                   </Grid>
                 </Grid>
-                <Grid xs justifyContent="center"> {/* Center the grid container */}
-                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                    <TextField type="file" name="photo" id="photo" />
-                  </Grid>
-                </Grid>
-                <Grid xs justifyContent="center"> {/* Center the grid container */}
-                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                    <TextField type="file" name="photo" id="photo" />
-                  </Grid>
-                </Grid>
-                <Grid xs justifyContent="center"> {/* Center the grid container */}
-                  <Grid item> {/* Wrap the file input and upload button in a Grid item */}
-                    <TextField type="file" name="photo" id="photo" />
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Box>
+              </Box>
             </Box>
 
             <Grid container spacing={0}>
