@@ -1,31 +1,27 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-    const Post = sequelize.define("post", {
+    const User = sequelize.define("user", {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
             allowNull: false,
         },
-        description: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        postname: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        category: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        photo: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        verified: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: 0,
         },
         createdAt: {
             type: DataTypes.DATE,
@@ -36,5 +32,5 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         timestamps: true,
     });
-    return Post;
+    return User;
 };
