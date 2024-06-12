@@ -41,7 +41,7 @@ export default function CreatePost() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Navbar title="Create Post" /> {/* Add Navbar component */}
-      <Container component="main" sx={{ marginLeft: '40%' }}> {/* Add paddingLeft */}
+      <Container component="main" sx={{ marginLeft: '60%' }}> {/* Add paddingLeft */}
         <CssBaseline />
         <Box
           sx={{
