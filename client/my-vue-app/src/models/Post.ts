@@ -27,12 +27,10 @@ export const getUploads = async () => {
 };
 
 export type Post = {
-  postname?: string;
   description?: string;
+  postname?: string;
   password?: string;
   photo?: string;
- /* price?: string;
-  contact?: string;*/
   createdAt?: string;
   updatedAt?: string;
 };
