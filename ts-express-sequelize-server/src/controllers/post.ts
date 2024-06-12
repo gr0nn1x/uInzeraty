@@ -19,7 +19,7 @@ export const getAllPosts = async (req: Request, res: Response) => {
 export const getPostById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    if (!id) return res.status(400).send({ message: "Missing details! 1" });
+    if (!id) return res.status(400).send({ message: "Missing details!" });
     const post: any = await Posting.findOne({ where: { id: id } });
     if (!post) return res.status(500).send({ message: "Post not found" });
     return res.status(200).send({ message: "Post found", payload: { post } });
@@ -30,10 +30,9 @@ export const getPostById = async (req: Request, res: Response) => {
 };
 export const createPost = async (req: Request, res: Response) => {
   try {
-    console.log(req.body);
-    const { description, postname, password, photo,/* price, contact*/ } = req.body;
-    if (!description || !password || !postname || !photo /*|| !price || !contact*/)
-      return res.status(400).send({ message: "Missing details! 2" });
+    const { description, postname, password, photo, category } = req.body;
+    if (!description || !password || !postname)
+      return res.status(400).send({ message: "Missing details!" });
     const post: any = await Posting.findOne({ where: { description: description } });
     if (post) return res.status(400).send({ message: "Post already exists" });
     const salt = await genSalt(10);
@@ -42,9 +41,8 @@ export const createPost = async (req: Request, res: Response) => {
       photo: "http://localhost:3000/img/" + req.file?.filename,
       description: description,
       postname: postname,
+      category: category,
       password: hashedString,
-      /*price: price,
-      contact: contact,*/
     });
     return res.status(201).send({ message: "Post created" });
   } catch (err) {
@@ -58,7 +56,7 @@ export const checkPassword = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { password } = req.body;
 
-    if (!id || !password) return res.status(400).send({ message: "Missing details! 3" });
+    if (!id || !password) return res.status(400).send({ message: "Missing details!" });
 
     const post: any = await Posting.findOne({ where: { id: id } });
 
@@ -82,7 +80,7 @@ export const updatePost = async (req: Request, res: Response) => {
     const { id } = req.params;
     const data = req.body;
     if (!id || !data)
-      return res.status(400).send({ message: "Missing details! 4" });
+      return res.status(400).send({ message: "Missing details!" });
     const post: any = await Posting.findOne({ where: { id: id } });
     if (!post) return res.status(500).send({ message: "Post not found" });
     for (const ops of data) {
@@ -100,7 +98,7 @@ export const updatePost = async (req: Request, res: Response) => {
 export const deletePost = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    if (!id) return res.status(400).send({ message: "Missing details! 5" });
+    if (!id) return res.status(400).send({ message: "Missing details!" });
     const post: any = await Posting.destroy({ where: { id: id } });
     if (!post) return res.status(500).send({ message: "Post not found" });
     return res.status(200).send({ message: "Post deleted" });
