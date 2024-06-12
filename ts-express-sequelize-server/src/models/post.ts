@@ -24,6 +24,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      /*
       price: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -32,6 +33,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      */
       password: {
         type: DataTypes.STRING,
         allowNull: false,

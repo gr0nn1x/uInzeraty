@@ -95,26 +95,6 @@ export default function CreatePost() {
                   <TextField
                     required
                     fullWidth
-                    name="price"
-                    label="Cena"
-                    id="price"
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="contact"
-                    label="Kontakt"
-                    id="contact"
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
                     name="password"
                     label="Heslo"
                     type="password"

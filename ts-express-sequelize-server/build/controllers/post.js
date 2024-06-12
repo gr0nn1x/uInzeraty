@@ -26,7 +26,7 @@ const getPostById = async (req, res) => {
     try {
         const { id } = req.params;
         if (!id)
-            return res.status(400).send({ message: "Missing details!" });
+            return res.status(400).send({ message: "Missing details! 1" });
         const post = await Posting.findOne({ where: { id: id } });
         if (!post)
             return res.status(500).send({ message: "Post not found" });
@@ -40,9 +40,10 @@ const getPostById = async (req, res) => {
 exports.getPostById = getPostById;
 const createPost = async (req, res) => {
     try {
-        const { description, postname, password, photo, category, price, contact } = req.body;
-        if (!description || !password || !postname || !category || !price || !contact || !photo)
-            return res.status(400).send({ message: "Missing details!" });
+        console.log(req.body);
+        const { description, postname, password, photo, /* price, contact*/ } = req.body;
+        if (!description || !password || !postname || !photo /*|| !price || !contact*/)
+            return res.status(400).send({ message: "Missing details! 2" });
         const post = await Posting.findOne({ where: { description: description } });
         if (post)
             return res.status(400).send({ message: "Post already exists" });
@@ -52,10 +53,9 @@ const createPost = async (req, res) => {
             photo: "http://localhost:3000/img/" + req.file?.filename,
             description: description,
             postname: postname,
-            category: category,
             password: hashedString,
-            price: price,
-            contact: contact,
+            /*price: price,
+            contact: contact,*/
         });
         return res.status(201).send({ message: "Post created" });
     }
@@ -70,7 +70,7 @@ const checkPassword = async (req, res) => {
         const { id } = req.params;
         const { password } = req.body;
         if (!id || !password)
-            return res.status(400).send({ message: "Missing details!" });
+            return res.status(400).send({ message: "Missing details! 3" });
         const post = await Posting.findOne({ where: { id: id } });
         if (!post)
             return res.status(500).send({ message: "Post not found" });
@@ -93,7 +93,7 @@ const updatePost = async (req, res) => {
         const { id } = req.params;
         const data = req.body;
         if (!id || !data)
-            return res.status(400).send({ message: "Missing details!" });
+            return res.status(400).send({ message: "Missing details! 4" });
         const post = await Posting.findOne({ where: { id: id } });
         if (!post)
             return res.status(500).send({ message: "Post not found" });
@@ -115,7 +115,7 @@ const deletePost = async (req, res) => {
     try {
         const { id } = req.params;
         if (!id)
-            return res.status(400).send({ message: "Missing details!" });
+            return res.status(400).send({ message: "Missing details! 5" });
         const post = await Posting.destroy({ where: { id: id } });
         if (!post)
             return res.status(500).send({ message: "Post not found" });
