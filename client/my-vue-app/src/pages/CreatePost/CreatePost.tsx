@@ -48,13 +48,12 @@ export default function CreatePost() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Navbar currentPage="createPost" />
-        <Container component="main" maxWidth="xs" sx={{ marginLeft: "500px" }}>
+        <Container component="main" maxWidth="xs" sx={{ marginLeft: "750px" }}>
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 8,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -81,11 +80,21 @@ export default function CreatePost() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
+                  <textarea
+                        style={{
+                          width: "100%",
+                          height: "200px",
+                          padding: "0",
+                          border: "none",
+                          outline: "none",
+                          resize: "none",
+                          fontSize: "1rem",
+                          backgroundColor: "white",
+                          color: "black",
+                          border: "solid 1px black",
+                        }}
+                    placeholder="Popis"
                     id="description"
-                    label="Popis"
                     name="description"
                     autoComplete="description"
                     onChange={handleChange}

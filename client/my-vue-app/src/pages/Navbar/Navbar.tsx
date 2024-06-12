@@ -41,12 +41,13 @@ const sidebarStyle = {
   minWidth: "250px",
   width: "250px",
   backgroundColor: "#fff",
-  position: "fixed",
-  left: 0,
-  top: 0,
-  bottom: 0,
   display: "flex",
   flexDirection: "column",
+  position: "fixed", 
+  top: 0, 
+  left: 0,
+  height: "100vh",
+  overflowY: "auto",
 };
 
 const buttonStyle = {
@@ -89,6 +90,10 @@ const logoImgStyle = {
   margin: "0 auto",
 };
 
+const Navbarrtzgegrg = {
+  float: "left",
+};
+
 const scrollbarStyle = `
   ::-webkit-scrollbar {
     width: 5px; /* Set the width of the scrollbar */
@@ -100,6 +105,7 @@ const scrollbarStyle = `
 
 export default function Navbar({ currentPage, onCategorySelect }) {
   return (
+    <div style={Navbarrtzgegrg}>
     <div style={sidebarStyle}>
       <style>{scrollbarStyle}</style>
       <div style={logoStyle}>
@@ -137,6 +143,7 @@ export default function Navbar({ currentPage, onCategorySelect }) {
           </ul>
         )}
       </div>
+    </div>
     </div>
   );
 }

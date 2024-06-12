@@ -35,72 +35,79 @@ export default function Home() {
 
   if (isLoaded === null) {
     return (
-      <Container component="main" sx={{ marginLeft: "500px" }}>
+      <>
         <Navbar currentPage="main" />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            color: "black",
-          }}
-        >
-          <p>Nebyly nalezeny žádné inzeráty. Co takhle jeden vytvořit?</p>
-        </Box>
-      </Container>
+        <Container component="main" sx={{ marginLeft: "500px" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              color: "black",
+            }}
+          >
+            <p>Nebyly nalezeny žádné inzeráty. Co takhle jeden vytvořit?</p>
+          </Box>
+        </Container>
+      </>
     );
   }
 
   return (
     <>
-      <Container component="main">
+      <div style={{ display: "flex", width: "100%" }}>
         <Navbar currentPage="main" onCategorySelect={handleCategorySelect} />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+        <Container
+          style={{
+            flexGrow: 1, 
+            padding: "16px",
+            maxWidth: "100%",
+            marginLeft: "250px",
           }}
         >
-          {filteredUploads.length === 0 ? (
-            <p
-              style={{
-                textAlign: "center",
-                color: "black",
-                marginLeft: "600px",
-              }}
-            >
-              V této kategorii nejsou žádné inzeráty.
-            </p>
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-                padding: "1rem",
-              }}
-            >
-              {filteredUploads.map((upload, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    marginLeft: "auto",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  <Product
-                    {...upload}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            {filteredUploads.length === 0 ? (
+              <p
+                style={{
+                  textAlign: "center",
+                  color: "black",
+                }}
+              >
+                V této kategorii nejsou žádné inzeráty.
+              </p>
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  flexWrap: "wrap",
+                  width: "100%",
+                }}
+              >
+                {filteredUploads.map((upload, index) => (
+                  <Box
+                    key={index}
                     sx={{
-                      paddingLeft: "0",
+                      margin: "1rem",
+                      maxWidth: "400px",
+                      maxHeight: "1000px",
                     }}
-                  />
-                </Box>
-              ))}
-            </Box>
-          )}
-        </Box>
-      </Container>
+                  >
+                    <Product {...upload} />
+                  </Box>
+                ))}
+              </Box>
+            )}
+          </Box>
+        </Container>
+      </div>
     </>
   );
 }
