@@ -51,41 +51,33 @@ export default function Product(props) {
 
   return (
     <div
-      className="product-container"
       style={{
-        position: "relative",
         overflow: "hidden",
-        border: "5px solid black", // Border around the image
-        borderRadius: "40px",
-        width: "400px",
-        height: "500px",
+        border: "5px solid black", 
+        width: "100%",
+        height: "100%",
         backgroundColor: "grey",
-        marginLeft: "300px",
+        display: "flex",
+        alignContent: "center",
+        flexDirection: "column",
+        
       }}
     >
       <img
         style={{
-          position: "absolute",
-          top: "0",
-          left: "0",
           width: "100%",
-          height: "40%",
-          objectFit: "cover",
-          borderTopLeftRadius: "40px",
-          borderTopRightRadius: "40px",
+          
         }}
-        className="article-img"
         src={props.photo}
         alt={props.postname}
         title={props.postname}
       />
       <div
         style={{
-          position: "absolute",
-          top: "54%",
-          left: "20px",
-          width: "calc(100% - 40px)", // Adjusted width to accommodate padding
-          overflow: "hidden", // Prevent content from overflowing
+          flexDirection: "column",
+          overflow: "hidden", 
+          justifyContent: "flex-start",
+          paddingLeft: "5px",
         }}
       >
         <p style={{ fontSize: "24px", fontWeight: "bold", maxWidth: "100%", overflowWrap: "break-word" }}>
@@ -101,12 +93,11 @@ export default function Product(props) {
           color: "red",
           fontSize: "30px",
           cursor: "pointer",
-          position: "absolute",
-          top: "20px",
-          right: "20px",
-          zIndex: 1,
+          paddingLeft: "5px",
+          width: "5%",
           "&:hover": {
-            transform: "scale(1.6)",
+            transform: "scale(1.2)",
+            
           },
         }}
         onClick={handleToggleInput}
