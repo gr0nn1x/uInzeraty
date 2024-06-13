@@ -154,7 +154,7 @@ export default function CreatePost() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Create Posts
+                Vytvořit inzerát
               </Button>
               <p>{info}</p>
             </Box>

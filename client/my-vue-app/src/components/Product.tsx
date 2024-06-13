@@ -42,10 +42,10 @@ export default function Product(props) {
       if (deleteRes.status === 200) {
         window.location.reload();
       } else {
-        setError("Failed to delete the post.");
+        setError("Nepodařilo se smazat inzerát.");
       }
     } else {
-      setError("Incorrect password.");
+      setError("Špatné heslo.");
     }
   };
 
@@ -118,7 +118,7 @@ export default function Product(props) {
             onChange={handlePasswordChange}
           />
           <button onClick={handleDelete} style={{ marginTop: 10 }}>
-            Delete Post
+            Smazat inzerát
           </button>
           {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
