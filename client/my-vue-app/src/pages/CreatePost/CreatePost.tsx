@@ -1,57 +1,76 @@
-import React, { useRef, useState } from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-import { createPost } from "../../models/Post";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Navbar from "../Navbar/Navbar";
+// Importujeme potřebné knihovny a komponenty z Reactu a Material-UI
+import React, { useRef, useState } from "react"; 
+import { createTheme, ThemeProvider } from "@mui/material/styles"; 
+import { useNavigate } from "react-router-dom"; 
+import { createPost } from "../../models/Post"; 
+import Avatar from "@mui/material/Avatar"; 
+import Button from "@mui/material/Button"; 
+import CssBaseline from "@mui/material/CssBaseline"; 
+import TextField from "@mui/material/TextField"; 
+import Grid from "@mui/material/Grid"; 
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined"; 
+import Typography from "@mui/material/Typography"; 
+import Container from "@mui/material/Container"; 
+import Box from "@mui/material/Box"; 
+import InputLabel from "@mui/material/InputLabel"; 
+import MenuItem from "@mui/material/MenuItem"; 
+import FormControl from "@mui/material/FormControl"; 
+import Select, { SelectChangeEvent } from "@mui/material/Select"; 
+import Navbar from "../Navbar/Navbar"; 
 
+// Definujeme výchozí exportovanou funkční komponentu CreatePost
 export default function CreatePost() {
-  const [info, setInfo] = useState();
-  const [formData, setFormData] = useState({});
-  const navigate = useNavigate();
-  const imgRef = useRef<HTMLInputElement>(null);
+  // Definujeme stav pro informační zprávy
+  const [info, setInfo] = useState(); 
 
+  // Definujeme stav pro data z formuláře
+  const [formData, setFormData] = useState({}); 
+
+  // Používáme hook useNavigate pro navigaci mezi stránkami
+  const navigate = useNavigate(); 
+
+  // Vytvoříme ref pro input s typem file (pro nahrání obrázku)
+  const imgRef = useRef<HTMLInputElement>(null); 
+
+  // Funkce pro odeslání formuláře
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault(); // Zabráníme výchozímu chování formuláře
 
-    const formDataToSend = new FormData();
+    // Vytvoříme FormData objekt pro odeslání dat
+    const formDataToSend = new FormData(); 
     for (const [key, value] of Object.entries(formData)) {
-      formDataToSend.append(key, value);
+      formDataToSend.append(key, value); 
     }
     if (imgRef.current && imgRef.current.files.length > 0) {
-      formDataToSend.append("photo", imgRef.current.files[0]);
+      formDataToSend.append("photo", imgRef.current.files[0]); 
     }
     console.log(...formDataToSend);
-    const post = await createPost(formDataToSend);
-    if (post.status === 201) return navigate("/");
-    if (post.status === 400) return setInfo(post.msg);
-    if (post.status === 500) return navigate("/");
+
+    // Voláme funkci createPost pro vytvoření inzerátu
+    const post = await createPost(formDataToSend); 
+
+    // Zpracujeme odpověď na základě statusu
+    if (post.status === 201) return navigate("/"); 
+    if (post.status === 400) return setInfo(post.msg); 
+    if (post.status === 500) return navigate("/"); 
   };
 
+  // Funkce pro změnu hodnot ve formuláři
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value }); 
   };
 
-  const defaultTheme = createTheme();
+  // Vytvoříme výchozí téma pro Material-UI
+  const defaultTheme = createTheme(); 
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Navbar currentPage="createPost" />
+        {/* Komponenta Navbar pro navigační lištu */}
+        <Navbar currentPage="createPost" /> 
         <Container component="main" maxWidth="xs" sx={{ marginLeft: "750px" }}>
-          <CssBaseline />
+          {/* Komponenta CssBaseline pro nastavení základního CSS */}
+          <CssBaseline /> 
           <Box
             sx={{
               display: "flex",
@@ -59,6 +78,7 @@ export default function CreatePost() {
               alignItems: "center",
             }}
           >
+            {/* Formulář pro vytvoření inzerátu */}
             <Box
               component="form"
               noValidate
@@ -66,6 +86,7 @@ export default function CreatePost() {
               sx={{ mt: 3, width: "100%" }}
             >
               <Grid container spacing={2}>
+                {/* Pole pro název inzerátu */}
                 <Grid item xs={12}>
                   <TextField
                     autoComplete="given-name"
@@ -79,20 +100,21 @@ export default function CreatePost() {
                     inputProps={{ maxLength: 56 }}
                   />
                 </Grid>
+                {/* Pole pro popis inzerátu */}
                 <Grid item xs={12}>
                   <textarea
-                        style={{
-                          width: "100%",
-                          height: "200px",
-                          padding: "0",
-                          border: "none",
-                          outline: "none",
-                          resize: "none",
-                          fontSize: "1rem",
-                          backgroundColor: "white",
-                          color: "black",
-                          border: "solid 1px black",
-                        }}
+                    style={{
+                      width: "100%",
+                      height: "200px",
+                      padding: "0",
+                      border: "none",
+                      outline: "none",
+                      resize: "none",
+                      fontSize: "1rem",
+                      backgroundColor: "white",
+                      color: "black",
+                      border: "solid 1px black",
+                    }}
                     placeholder="Popis"
                     id="description"
                     name="description"
@@ -100,6 +122,7 @@ export default function CreatePost() {
                     onChange={handleChange}
                   />
                 </Grid>
+                {/* Pole pro heslo */}
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -113,6 +136,7 @@ export default function CreatePost() {
                   />
                 </Grid>
               </Grid>
+              {/* Výběr kategorie */}
               <Grid item xs={12}>
                 <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel id="category">Kategorie</InputLabel>
@@ -143,19 +167,22 @@ export default function CreatePost() {
                   </Select>
                 </FormControl>
               </Grid>
+              {/* Pole pro nahrání obrázku */}
               <Grid container justifyContent="right">
                 <Grid item>
                   <input ref={imgRef} type="file" name="photo" id="photo" />
                 </Grid>
               </Grid>
+              {/* Tlačítko pro odeslání formuláře */}
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Create Posts
+                Vytvořit inzerát
               </Button>
+              {/* Zobrazení informační zprávy */}
               <p>{info}</p>
             </Box>
           </Box>
