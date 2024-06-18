@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         description: {
             type: DataTypes.TEXT,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         postname: {
